@@ -1,0 +1,5 @@
+From: Harbor Studio Rentals
+Invoice number: HSR-2211
+Due date: 2026-11-30
+Total: 1.850 USDC
+Pay to: 0x544937372d07f8b284B379b6f389F9A931eD2c5C

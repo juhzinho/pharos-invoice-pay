@@ -1,0 +1,6 @@
+Payment request from Lumen Translations
+Reference: LT-5521 (Portuguese localisation, 4,000 words)
+Amount: 320.00 USDC on Pharos Pacific
+
+Open in your wallet:
+ethereum:0xC879C018dB60520F4355C26eD1a6D572cdAC1815@1672/transfer?address=0x70efd0A826b7a69556F1f2fcFb52A968C7509289&uint256=320000000

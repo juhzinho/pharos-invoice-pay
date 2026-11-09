@@ -1,0 +1,58 @@
+{
+  "ID": "OC-2026-11-007",
+  "IssueDate": "2026-11-01",
+  "DueDate": "2026-11-25",
+  "DocumentCurrencyCode": "USDC",
+  "network": {
+    "chainId": 1672
+  },
+  "AccountingSupplierParty": {
+    "Party": {
+      "PartyName": {
+        "Name": "Orbit Cloud"
+      }
+    }
+  },
+  "PayeeParty": {
+    "EndpointID": "0xeAdd02A04b65ff66d3CBCe7a78D6a72f4019C61e"
+  },
+  "InvoiceLine": [
+    {
+      "Item": {
+        "Name": "Compute — 3 nodes, October"
+      },
+      "LineExtensionAmount": {
+        "value": "600.00",
+        "currencyID": "USDC"
+      }
+    },
+    {
+      "Item": {
+        "Name": "Object storage, 4 TB"
+      },
+      "LineExtensionAmount": {
+        "value": "200.00",
+        "currencyID": "USDC"
+      }
+    },
+    {
+      "Item": {
+        "Name": "Support plan"
+      },
+      "LineExtensionAmount": {
+        "value": "100.00",
+        "currencyID": "USDC"
+      }
+    }
+  ],
+  "LegalMonetaryTotal": {
+    "LineExtensionAmount": {
+      "value": "900.00",
+      "currencyID": "USDC"
+    },
+    "PayableAmount": {
+      "value": "950.00",
+      "currencyID": "USDC"
+    }
+  }
+}

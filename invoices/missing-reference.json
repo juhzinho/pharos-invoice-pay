@@ -1,0 +1,10 @@
+{
+  "payee": {
+    "name": "Harbor Studio Rentals",
+    "address": "0x544937372d07f8b284B379b6f389F9A931eD2c5C"
+  },
+  "amountDue": "1850.00",
+  "currency": "USDC",
+  "dueDate": "2026-11-30",
+  "chainId": 1672
+}

@@ -1,0 +1,6 @@
+node_modules/
+.env
+scratch/
+.vercel
+.invoice/
+.invoice-proof/

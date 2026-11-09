@@ -1,0 +1,29 @@
+{
+  "note": "The payer's own vendor book: the payee addresses confirmed out of band. An invoice that names a vendor with a different address is stopped.",
+  "vendors": [
+    {
+      "name": "Acme Design Studio",
+      "address": "0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18"
+    },
+    {
+      "name": "Northwind Hosting",
+      "address": "0x96c024E66A59273CdD200aB60C4A83F3FFf938E4"
+    },
+    {
+      "name": "Orbit Cloud",
+      "address": "0xeAdd02A04b65ff66d3CBCe7a78D6a72f4019C61e"
+    },
+    {
+      "name": "Lumen Translations",
+      "address": "0x70efd0A826b7a69556F1f2fcFb52A968C7509289"
+    },
+    {
+      "name": "Atlas Consulting",
+      "address": "0x9a5f30b574899589d673Df32929001BB63B76479"
+    },
+    {
+      "name": "Harbor Studio Rentals",
+      "address": "0x544937372d07f8b284B379b6f389F9A931eD2c5C"
+    }
+  ]
+}

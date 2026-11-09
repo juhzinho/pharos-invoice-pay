@@ -1,0 +1,217 @@
+{
+  "recordedAt": "2026-11-09T15:30:36.205Z",
+  "network": "Anvil fork of Pharos Pacific",
+  "note": "test wallets: fresh keys funded on the fork only",
+  "payments": [
+    {
+      "invoice": "acme-design.txt",
+      "format": "text",
+      "mode": "once",
+      "reference": "INV-2026-0142",
+      "payee": "0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18",
+      "amount": "1,250 USDC",
+      "sentBy": "a relayer",
+      "hash": "0x4d9975da57a504a4f70aec45aa67554f66dacf42124d6795bdbd385300f5f539",
+      "gasUsed": "103092",
+      "status": "success",
+      "inputTail": "696e763a494e562d323032362d30313432",
+      "verify": {
+        "hash": "0x4d9975da57a504a4f70aec45aa67554f66dacf42124d6795bdbd385300f5f539",
+        "block": 22575058,
+        "status": "success",
+        "reference": "INV-2026-0142",
+        "paid": {
+          "token": "USDC",
+          "from": "0x5e185868094B4728f7Cf5d85ed8f03fF2eaD2767",
+          "to": "0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18",
+          "units": "1250000000"
+        },
+        "matches": true,
+        "checks": [
+          {
+            "what": "reference",
+            "ok": true,
+            "got": "INV-2026-0142",
+            "want": "INV-2026-0142"
+          },
+          {
+            "what": "payee",
+            "ok": true,
+            "got": "0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18",
+            "want": "0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18"
+          },
+          {
+            "what": "amount",
+            "ok": true,
+            "got": "1250000000",
+            "want": "1250000000"
+          },
+          {
+            "what": "token",
+            "ok": true,
+            "got": "USDC",
+            "want": "USDC"
+          },
+          {
+            "what": "status",
+            "ok": true,
+            "got": "success",
+            "want": "success"
+          }
+        ]
+      },
+      "signed": "one EIP-712 authorization"
+    },
+    {
+      "invoice": "northwind-hosting.pdf",
+      "format": "pdf",
+      "mode": "direct",
+      "reference": "NW-88213",
+      "payee": "0x96c024E66A59273CdD200aB60C4A83F3FFf938E4",
+      "amount": "482 USDC",
+      "sentBy": "the payer",
+      "hash": "0xa1711362ef4d611347c83ecbf87019473c90c82f6909dfcbbfb0a561d7a2ab72",
+      "gasUsed": "62363",
+      "status": "success",
+      "inputTail": "696e763a4e572d3838323133",
+      "verify": {
+        "hash": "0xa1711362ef4d611347c83ecbf87019473c90c82f6909dfcbbfb0a561d7a2ab72",
+        "block": 22575059,
+        "status": "success",
+        "reference": "NW-88213",
+        "paid": {
+          "token": "USDC",
+          "from": "0x5e185868094B4728f7Cf5d85ed8f03fF2eaD2767",
+          "to": "0x96c024E66A59273CdD200aB60C4A83F3FFf938E4",
+          "units": "482000000"
+        },
+        "matches": true,
+        "checks": [
+          {
+            "what": "reference",
+            "ok": true,
+            "got": "NW-88213",
+            "want": "NW-88213"
+          },
+          {
+            "what": "payee",
+            "ok": true,
+            "got": "0x96c024E66A59273CdD200aB60C4A83F3FFf938E4",
+            "want": "0x96c024E66A59273CdD200aB60C4A83F3FFf938E4"
+          },
+          {
+            "what": "amount",
+            "ok": true,
+            "got": "482000000",
+            "want": "482000000"
+          },
+          {
+            "what": "token",
+            "ok": true,
+            "got": "USDC",
+            "want": "USDC"
+          },
+          {
+            "what": "status",
+            "ok": true,
+            "got": "success",
+            "want": "success"
+          }
+        ]
+      },
+      "signed": "the transaction itself"
+    },
+    {
+      "invoice": "lumen-payment-request.txt",
+      "format": "eip681",
+      "mode": "once",
+      "reference": "LT-5521",
+      "payee": "0x70efd0A826b7a69556F1f2fcFb52A968C7509289",
+      "amount": "320 USDC",
+      "sentBy": "an unrelated account",
+      "hash": "0xfc1291127115d2a8eee52a46b32655e9cdcc5365988edeb93910ef4d411751a3",
+      "gasUsed": "103008",
+      "status": "success",
+      "inputTail": "696e763a4c542d35353231",
+      "verify": {
+        "hash": "0xfc1291127115d2a8eee52a46b32655e9cdcc5365988edeb93910ef4d411751a3",
+        "block": 22575060,
+        "status": "success",
+        "reference": "LT-5521",
+        "paid": {
+          "token": "USDC",
+          "from": "0x5e185868094B4728f7Cf5d85ed8f03fF2eaD2767",
+          "to": "0x70efd0A826b7a69556F1f2fcFb52A968C7509289",
+          "units": "320000000"
+        },
+        "matches": true,
+        "checks": [
+          {
+            "what": "reference",
+            "ok": true,
+            "got": "LT-5521",
+            "want": "LT-5521"
+          },
+          {
+            "what": "payee",
+            "ok": true,
+            "got": "0x70efd0A826b7a69556F1f2fcFb52A968C7509289",
+            "want": "0x70efd0A826b7a69556F1f2fcFb52A968C7509289"
+          },
+          {
+            "what": "amount",
+            "ok": true,
+            "got": "320000000",
+            "want": "320000000"
+          },
+          {
+            "what": "token",
+            "ok": true,
+            "got": "USDC",
+            "want": "USDC"
+          },
+          {
+            "what": "status",
+            "ok": true,
+            "got": "success",
+            "want": "success"
+          }
+        ]
+      },
+      "signed": "one EIP-712 authorization"
+    }
+  ],
+  "steps": [
+    {
+      "step": "already paid",
+      "decision": "blocked",
+      "flag": {
+        "severity": "block",
+        "code": "already-paid",
+        "message": "Invoice INV-2026-0142 to this payee was already paid by this wallet — transaction 0x4d9975da57a504a4f70aec45aa67554f66dacf42124d6795bdbd385300f5f539 (block 22575058). USDC would refuse a second payment with the same invoice fingerprint.",
+        "field": "reference",
+        "tx": "0x4d9975da57a504a4f70aec45aa67554f66dacf42124d6795bdbd385300f5f539"
+      },
+      "foundTx": "0x4d9975da57a504a4f70aec45aa67554f66dacf42124d6795bdbd385300f5f539",
+      "sameAsFirst": true,
+      "replay": {
+        "hash": "0x29ed0391ac788498d50326b5b4e03356b5a3eac4e4137961e811e6698d3fec6f",
+        "status": "reverted",
+        "reason": "FiatTokenV2: authorization is used or canceled"
+      }
+    },
+    {
+      "step": "wrong invoice",
+      "tx": "0x4d9975da57a504a4f70aec45aa67554f66dacf42124d6795bdbd385300f5f539",
+      "invoice": "lumen-payment-request.txt",
+      "matches": false,
+      "differ": [
+        "reference",
+        "payee",
+        "amount"
+      ]
+    }
+  ],
+  "forkBlock": 22575057,
+  "payer": "0x5e185868094B4728f7Cf5d85ed8f03fF2eaD2767"
+}

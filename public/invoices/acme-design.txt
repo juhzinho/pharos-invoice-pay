@@ -1,0 +1,26 @@
+From: Acme Design Studio <billing@acme-design.example>
+To: accounts@payer.example
+Subject: Invoice INV-2026-0142 — brand refresh, November
+
+Hello,
+
+Please find our invoice below.
+
+Invoice number: INV-2026-0142
+Invoice date: 2026-11-02
+Due date: 2026-11-30
+
+Description                         Qty   Amount
+Brand refresh — logo system           1   800.00
+Website art direction                  1   300.00
+
+Subtotal:   1,100.00 USD
+Tax (13.6%):  150.00 USD
+Amount due: 1,250.00 USD
+Amount in words: One thousand two hundred fifty US dollars
+
+Network: Pharos Pacific (chain 1672), USDC accepted
+Pay to: 0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18
+
+Thank you,
+Acme Design Studio

@@ -1,0 +1,9 @@
+From: Kanzlei Weber GmbH
+Rechnung / Invoice number: KW-2026-311
+Invoice date: 04.11.2026
+Due date: 30.11.2026
+
+Beratung (consulting), 12 h      2.400,00 EUR
+
+Total due: 2.400,00 EUR
+Pay to: 0xe9382991dfb2B61320ABBB2C3B1F2BAC26e08E2b

@@ -1,0 +1,21 @@
+{
+  "name": "pharos-invoice-pay",
+  "version": "1.0.0",
+  "description": "A SkillEngine skill for Pharos Pacific that reads an invoice (text, PDF, structured JSON or an EIP-681 payment request), flags mismatches and missing fields instead of guessing, and prepares the matching payment as an unsigned transaction that carries the invoice reference on chain.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": { "node": ">=20.12" },
+  "scripts": {
+    "invoice": "node tasks/invoice/invoice.js",
+    "web": "node scripts/dev-server.js",
+    "test": "node --test test/*.test.js",
+    "test:e2e": "node test/e2e.js"
+  },
+  "dependencies": { "viem": "^2.57.5", "pdfjs-dist": "4.10.38" },
+  "devDependencies": { "pdf-lib": "1.17.1" },
+  "optionalDependencies": {
+    "@foundry-rs/anvil-win32-amd64": "1.7.1",
+    "@foundry-rs/anvil-linux-amd64": "1.7.1"
+  }
+}

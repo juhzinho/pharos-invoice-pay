@@ -1,0 +1,6 @@
+From: Harbor Studio Rentals
+Invoice number: HSR-2212
+Due date: 2026-12-30
+Amount due: 1,850.00 USDC (one thousand five hundred eighty dollars)
+Network: Pharos Pacific (1672)
+Pay to: 0x544937372d07f8b284B379b6f389F9A931eD2c5C

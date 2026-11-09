@@ -1,0 +1,1663 @@
+{
+  "recordedAt": "2026-11-09T15:31:40.139Z",
+  "network": "Pharos Pacific Mainnet",
+  "payer": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+  "vendors": [
+    {
+      "name": "Acme Design Studio",
+      "address": "0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18"
+    },
+    {
+      "name": "Northwind Hosting",
+      "address": "0x96c024E66A59273CdD200aB60C4A83F3FFf938E4"
+    },
+    {
+      "name": "Orbit Cloud",
+      "address": "0xeAdd02A04b65ff66d3CBCe7a78D6a72f4019C61e"
+    },
+    {
+      "name": "Lumen Translations",
+      "address": "0x70efd0A826b7a69556F1f2fcFb52A968C7509289"
+    },
+    {
+      "name": "Atlas Consulting",
+      "address": "0x9a5f30b574899589d673Df32929001BB63B76479"
+    },
+    {
+      "name": "Harbor Studio Rentals",
+      "address": "0x544937372d07f8b284B379b6f389F9A931eD2c5C"
+    }
+  ],
+  "results": [
+    {
+      "file": "acme-design.txt",
+      "extraction": {
+        "format": "text",
+        "fields": {
+          "reference": {
+            "value": "INV-2026-0142",
+            "raw": "Invoice number: INV-2026-0142",
+            "source": {
+              "line": 9,
+              "text": "Invoice number: INV-2026-0142"
+            }
+          },
+          "payee": {
+            "value": "0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18",
+            "raw": "0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18",
+            "source": {
+              "line": 23,
+              "text": "Pay to: 0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18"
+            },
+            "labelled": true
+          },
+          "payeeName": {
+            "value": "Acme Design Studio",
+            "raw": "From: Acme Design Studio <billing@acme-design.example>",
+            "source": {
+              "line": 1,
+              "text": "From: Acme Design Studio <billing@acme-design.example>"
+            }
+          },
+          "amount": {
+            "value": "1250.00",
+            "raw": "1,250.00",
+            "source": {
+              "line": 19,
+              "text": "Amount due: 1,250.00 USD"
+            },
+            "ambiguous": null,
+            "currency": "USD"
+          },
+          "subtotal": {
+            "value": "1100.00",
+            "raw": "1,100.00",
+            "source": {
+              "line": 17,
+              "text": "Subtotal:   1,100.00 USD"
+            },
+            "ambiguous": null,
+            "currency": "USD"
+          },
+          "tax": {
+            "value": "150.00",
+            "raw": "150.00",
+            "source": {
+              "line": 18,
+              "text": "Tax (13.6%):  150.00 USD"
+            },
+            "ambiguous": null,
+            "currency": "USD"
+          },
+          "currency": {
+            "value": "USD",
+            "raw": "1,250.00",
+            "source": {
+              "line": 19,
+              "text": "Amount due: 1,250.00 USD"
+            }
+          },
+          "amountInWords": {
+            "value": "1250.00",
+            "raw": "One thousand two hundred fifty US dollars",
+            "source": {
+              "line": 20,
+              "text": "Amount in words: One thousand two hundred fifty US dollars"
+            }
+          },
+          "dueDate": {
+            "value": "2026-11-30",
+            "raw": "2026-11-30",
+            "source": {
+              "line": 11,
+              "text": "Due date: 2026-11-30"
+            }
+          },
+          "issueDate": {
+            "value": "2026-11-02",
+            "raw": "2026-11-02",
+            "source": {
+              "line": 10,
+              "text": "Invoice date: 2026-11-02"
+            }
+          },
+          "chainId": {
+            "value": 1672,
+            "raw": "Pharos Pacific (chain 1672), USDC accepted",
+            "source": {
+              "line": 22,
+              "text": "Network: Pharos Pacific (chain 1672), USDC accepted"
+            }
+          },
+          "lineItems": [
+            {
+              "value": "800.00",
+              "raw": "800.00",
+              "source": {
+                "line": 14,
+                "text": "Brand refresh — logo system           1   800.00"
+              },
+              "description": "Brand refresh — logo system"
+            },
+            {
+              "value": "300.00",
+              "raw": "300.00",
+              "source": {
+                "line": 15,
+                "text": "Website art direction                  1   300.00"
+              },
+              "description": "Website art direction"
+            }
+          ]
+        },
+        "conflicts": [],
+        "lines": [
+          "From: Acme Design Studio <billing@acme-design.example>",
+          "To: accounts@payer.example",
+          "Subject: Invoice INV-2026-0142 — brand refresh, November",
+          "",
+          "Hello,",
+          "",
+          "Please find our invoice below.",
+          "",
+          "Invoice number: INV-2026-0142",
+          "Invoice date: 2026-11-02",
+          "Due date: 2026-11-30",
+          "",
+          "Description                         Qty   Amount",
+          "Brand refresh — logo system           1   800.00",
+          "Website art direction                  1   300.00",
+          "",
+          "Subtotal:   1,100.00 USD",
+          "Tax (13.6%):  150.00 USD",
+          "Amount due: 1,250.00 USD",
+          "Amount in words: One thousand two hundred fifty US dollars",
+          "",
+          "Network: Pharos Pacific (chain 1672), USDC accepted",
+          "Pay to: 0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18",
+          "",
+          "Thank you,",
+          "Acme Design Studio",
+          ""
+        ],
+        "pages": null
+      },
+      "format": "text",
+      "name": "acme-design.txt",
+      "decision": "ready",
+      "flags": [
+        {
+          "severity": "info",
+          "code": "usd-as-usdc",
+          "message": "The invoice is in US dollars: paid 1:1 in USDC (USDC/USD 0.9997 on the Chainlink feed).",
+          "field": "currency",
+          "source": {
+            "line": 19,
+            "text": "Amount due: 1,250.00 USD"
+          }
+        },
+        {
+          "severity": "info",
+          "code": "payee-known",
+          "message": "Payee matches the vendor book: Acme Design Studio.",
+          "field": "payee"
+        }
+      ],
+      "resolved": {
+        "reference": "INV-2026-0142",
+        "payee": "0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18",
+        "payeeName": "Acme Design Studio",
+        "token": "USDC",
+        "units": "1250000000",
+        "amount": "1,250",
+        "dueDate": "2026-11-30",
+        "payer": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+        "mode": "once",
+        "memo": "inv:INV-2026-0142",
+        "memoHex": "0x696e763a494e562d323032362d30313432",
+        "fingerprint": "0x673dc351cc770bcc2d7eac036fc2342af7e0ac39798cb8fd1cae679018d25b86"
+      },
+      "chain": {
+        "block": 22575115,
+        "timestamp": 1794238374,
+        "baseFeeGwei": 10,
+        "payerBalance": "139,890.427209"
+      },
+      "peg": 0.99974314,
+      "summary": "Pay 1,250 USDC to Acme Design Studio (0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18) for invoice INV-2026-0142, due 2026-11-30. The reference travels on chain as “inv:INV-2026-0142”.",
+      "sign": {
+        "kind": "eip3009",
+        "typedData": {
+          "domain": {
+            "name": "USDC",
+            "version": "2",
+            "chainId": 1672,
+            "verifyingContract": "0xC879C018dB60520F4355C26eD1a6D572cdAC1815"
+          },
+          "types": {
+            "TransferWithAuthorization": [
+              {
+                "name": "from",
+                "type": "address"
+              },
+              {
+                "name": "to",
+                "type": "address"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              },
+              {
+                "name": "validAfter",
+                "type": "uint256"
+              },
+              {
+                "name": "validBefore",
+                "type": "uint256"
+              },
+              {
+                "name": "nonce",
+                "type": "bytes32"
+              }
+            ]
+          },
+          "primaryType": "TransferWithAuthorization",
+          "message": {
+            "from": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+            "to": "0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18",
+            "value": "1250000000",
+            "validAfter": "0",
+            "validBefore": "1795447974",
+            "nonce": "0x673dc351cc770bcc2d7eac036fc2342af7e0ac39798cb8fd1cae679018d25b86"
+          }
+        },
+        "note": "one EIP-712 signature (eth_signTypedData_v4); its nonce is this invoice's fingerprint, so it can be paid once"
+      }
+    },
+    {
+      "file": "northwind-hosting.pdf",
+      "extraction": {
+        "format": "pdf",
+        "fields": {
+          "reference": {
+            "value": "NW-88213",
+            "raw": "Invoice number   NW-88213",
+            "source": {
+              "line": 2,
+              "text": "Invoice number   NW-88213"
+            }
+          },
+          "payee": {
+            "value": "0x96c024E66A59273CdD200aB60C4A83F3FFf938E4",
+            "raw": "0x96c024E66A59273CdD200aB60C4A83F3FFf938E4",
+            "source": {
+              "line": 14,
+              "text": "Payment address   0x96c024E66A59273CdD200aB60C4A83F3FFf938E4"
+            },
+            "labelled": true
+          },
+          "payeeName": {
+            "value": "Northwind Hosting",
+            "raw": "Billed by   Northwind Hosting",
+            "source": {
+              "line": 5,
+              "text": "Billed by   Northwind Hosting"
+            }
+          },
+          "amount": {
+            "value": "482.00",
+            "raw": "482.00",
+            "source": {
+              "line": 12,
+              "text": "Total due   482.00 USDC"
+            },
+            "ambiguous": null,
+            "currency": "USDC"
+          },
+          "subtotal": {
+            "value": "482.00",
+            "raw": "482.00",
+            "source": {
+              "line": 10,
+              "text": "Subtotal   482.00"
+            },
+            "ambiguous": null,
+            "currency": null
+          },
+          "tax": {
+            "value": "0.00",
+            "raw": "0.00",
+            "source": {
+              "line": 11,
+              "text": "Tax   0.00"
+            },
+            "ambiguous": null,
+            "currency": null
+          },
+          "currency": {
+            "value": "USDC",
+            "raw": "482.00",
+            "source": {
+              "line": 12,
+              "text": "Total due   482.00 USDC"
+            }
+          },
+          "dueDate": {
+            "value": "2026-11-24",
+            "raw": "Nov 24, 2026",
+            "source": {
+              "line": 4,
+              "text": "Due date   Nov 24, 2026"
+            }
+          },
+          "issueDate": {
+            "value": "2026-11-03",
+            "raw": "Nov 3, 2026",
+            "source": {
+              "line": 3,
+              "text": "Invoice date   Nov 3, 2026"
+            }
+          },
+          "chainId": {
+            "value": 1672,
+            "raw": "Pharos Pacific (1672)",
+            "source": {
+              "line": 13,
+              "text": "Network   Pharos Pacific (1672)"
+            }
+          },
+          "lineItems": [
+            {
+              "value": "390.00",
+              "raw": "390.00",
+              "source": {
+                "line": 7,
+                "text": "Dedicated server, November   1   390.00"
+              },
+              "description": "Dedicated server, November"
+            },
+            {
+              "value": "62.00",
+              "raw": "62.00",
+              "source": {
+                "line": 8,
+                "text": "Backups, 2 TB   1   62.00"
+              },
+              "description": "Backups, 2 TB"
+            },
+            {
+              "value": "30.00",
+              "raw": "30.00",
+              "source": {
+                "line": 9,
+                "text": "Static IPs   3   30.00"
+              },
+              "description": "Static IPs"
+            }
+          ]
+        },
+        "conflicts": [],
+        "lines": [
+          "Northwind Hosting — Invoice",
+          "Invoice number   NW-88213",
+          "Invoice date   Nov 3, 2026",
+          "Due date   Nov 24, 2026",
+          "Billed by   Northwind Hosting",
+          "Description   Qty   Amount",
+          "Dedicated server, November   1   390.00",
+          "Backups, 2 TB   1   62.00",
+          "Static IPs   3   30.00",
+          "Subtotal   482.00",
+          "Tax   0.00",
+          "Total due   482.00 USDC",
+          "Network   Pharos Pacific (1672)",
+          "Payment address   0x96c024E66A59273CdD200aB60C4A83F3FFf938E4",
+          "Northwind Hosting · billing@northwind.example · Pay in USDC on Pharos Pacific only."
+        ],
+        "pages": 1
+      },
+      "format": "pdf",
+      "name": "northwind-hosting.pdf",
+      "decision": "ready",
+      "flags": [
+        {
+          "severity": "info",
+          "code": "payee-known",
+          "message": "Payee matches the vendor book: Northwind Hosting.",
+          "field": "payee"
+        }
+      ],
+      "resolved": {
+        "reference": "NW-88213",
+        "payee": "0x96c024E66A59273CdD200aB60C4A83F3FFf938E4",
+        "payeeName": "Northwind Hosting",
+        "token": "USDC",
+        "units": "482000000",
+        "amount": "482",
+        "dueDate": "2026-11-24",
+        "payer": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+        "mode": "once",
+        "memo": "inv:NW-88213",
+        "memoHex": "0x696e763a4e572d3838323133",
+        "fingerprint": "0x150a5a0d91b60113e304ac7d795b75360dc7eb0941b4bd56ccba84db980201f4"
+      },
+      "chain": {
+        "block": 22575117,
+        "timestamp": 1794238376,
+        "baseFeeGwei": 10,
+        "payerBalance": "139,890.427209"
+      },
+      "peg": null,
+      "summary": "Pay 482 USDC to Northwind Hosting (0x96c024E66A59273CdD200aB60C4A83F3FFf938E4) for invoice NW-88213, due 2026-11-24. The reference travels on chain as “inv:NW-88213”.",
+      "sign": {
+        "kind": "eip3009",
+        "typedData": {
+          "domain": {
+            "name": "USDC",
+            "version": "2",
+            "chainId": 1672,
+            "verifyingContract": "0xC879C018dB60520F4355C26eD1a6D572cdAC1815"
+          },
+          "types": {
+            "TransferWithAuthorization": [
+              {
+                "name": "from",
+                "type": "address"
+              },
+              {
+                "name": "to",
+                "type": "address"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              },
+              {
+                "name": "validAfter",
+                "type": "uint256"
+              },
+              {
+                "name": "validBefore",
+                "type": "uint256"
+              },
+              {
+                "name": "nonce",
+                "type": "bytes32"
+              }
+            ]
+          },
+          "primaryType": "TransferWithAuthorization",
+          "message": {
+            "from": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+            "to": "0x96c024E66A59273CdD200aB60C4A83F3FFf938E4",
+            "value": "482000000",
+            "validAfter": "0",
+            "validBefore": "1795447976",
+            "nonce": "0x150a5a0d91b60113e304ac7d795b75360dc7eb0941b4bd56ccba84db980201f4"
+          }
+        },
+        "note": "one EIP-712 signature (eth_signTypedData_v4); its nonce is this invoice's fingerprint, so it can be paid once"
+      }
+    },
+    {
+      "file": "lumen-payment-request.txt",
+      "extraction": {
+        "format": "eip681",
+        "fields": {
+          "reference": {
+            "value": "LT-5521",
+            "raw": "Reference: LT-5521 (Portuguese localisation, 4,000 words)",
+            "source": {
+              "line": 2,
+              "text": "Reference: LT-5521 (Portuguese localisation, 4,000 words)"
+            }
+          },
+          "amount": {
+            "value": "320",
+            "raw": "320000000",
+            "source": {
+              "line": 6,
+              "text": "ethereum:0xC879C018dB60520F4355C26eD1a6D572cdAC1815@1672/transfer?address=0x70efd0A826b7a69556F1f2fcFb52A968C7509289&uint256=320000000",
+              "param": "uint256"
+            },
+            "inUnits": true
+          },
+          "currency": {
+            "value": "USDC",
+            "raw": "0xC879C018dB60520F4355C26eD1a6D572cdAC1815",
+            "source": {
+              "line": 6,
+              "text": "ethereum:0xC879C018dB60520F4355C26eD1a6D572cdAC1815@1672/transfer?address=0x70efd0A826b7a69556F1f2fcFb52A968C7509289&uint256=320000000",
+              "param": "target"
+            }
+          },
+          "chainId": {
+            "value": 1672,
+            "raw": "@1672",
+            "source": {
+              "line": 6,
+              "text": "ethereum:0xC879C018dB60520F4355C26eD1a6D572cdAC1815@1672/transfer?address=0x70efd0A826b7a69556F1f2fcFb52A968C7509289&uint256=320000000",
+              "param": "chain_id"
+            }
+          },
+          "payee": {
+            "value": "0x70efd0A826b7a69556F1f2fcFb52A968C7509289",
+            "raw": "0x70efd0A826b7a69556F1f2fcFb52A968C7509289",
+            "source": {
+              "line": 6,
+              "text": "ethereum:0xC879C018dB60520F4355C26eD1a6D572cdAC1815@1672/transfer?address=0x70efd0A826b7a69556F1f2fcFb52A968C7509289&uint256=320000000",
+              "param": "address"
+            },
+            "labelled": true
+          }
+        },
+        "conflicts": [],
+        "lines": [
+          "Payment request from Lumen Translations",
+          "Reference: LT-5521 (Portuguese localisation, 4,000 words)",
+          "Amount: 320.00 USDC on Pharos Pacific",
+          "",
+          "Open in your wallet:",
+          "ethereum:0xC879C018dB60520F4355C26eD1a6D572cdAC1815@1672/transfer?address=0x70efd0A826b7a69556F1f2fcFb52A968C7509289&uint256=320000000",
+          ""
+        ],
+        "pages": null
+      },
+      "format": "eip681",
+      "name": "lumen-payment-request.txt",
+      "decision": "ready",
+      "flags": [
+        {
+          "severity": "info",
+          "code": "payee-known",
+          "message": "Payee matches the vendor book: Lumen Translations.",
+          "field": "payee"
+        }
+      ],
+      "resolved": {
+        "reference": "LT-5521",
+        "payee": "0x70efd0A826b7a69556F1f2fcFb52A968C7509289",
+        "payeeName": "Lumen Translations",
+        "token": "USDC",
+        "units": "320000000",
+        "amount": "320",
+        "dueDate": null,
+        "payer": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+        "mode": "once",
+        "memo": "inv:LT-5521",
+        "memoHex": "0x696e763a4c542d35353231",
+        "fingerprint": "0x0ac3f4890a48fef6992e2bec64909885e64f72514d5f15460cd2386db11036d7"
+      },
+      "chain": {
+        "block": 22575118,
+        "timestamp": 1794238377,
+        "baseFeeGwei": 10,
+        "payerBalance": "139,890.427209"
+      },
+      "peg": null,
+      "summary": "Pay 320 USDC to Lumen Translations (0x70efd0A826b7a69556F1f2fcFb52A968C7509289) for invoice LT-5521. The reference travels on chain as “inv:LT-5521”.",
+      "sign": {
+        "kind": "eip3009",
+        "typedData": {
+          "domain": {
+            "name": "USDC",
+            "version": "2",
+            "chainId": 1672,
+            "verifyingContract": "0xC879C018dB60520F4355C26eD1a6D572cdAC1815"
+          },
+          "types": {
+            "TransferWithAuthorization": [
+              {
+                "name": "from",
+                "type": "address"
+              },
+              {
+                "name": "to",
+                "type": "address"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              },
+              {
+                "name": "validAfter",
+                "type": "uint256"
+              },
+              {
+                "name": "validBefore",
+                "type": "uint256"
+              },
+              {
+                "name": "nonce",
+                "type": "bytes32"
+              }
+            ]
+          },
+          "primaryType": "TransferWithAuthorization",
+          "message": {
+            "from": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+            "to": "0x70efd0A826b7a69556F1f2fcFb52A968C7509289",
+            "value": "320000000",
+            "validAfter": "0",
+            "validBefore": "1795447977",
+            "nonce": "0x0ac3f4890a48fef6992e2bec64909885e64f72514d5f15460cd2386db11036d7"
+          }
+        },
+        "note": "one EIP-712 signature (eth_signTypedData_v4); its nonce is this invoice's fingerprint, so it can be paid once"
+      }
+    },
+    {
+      "file": "acme-design-new-wallet.pdf",
+      "extraction": {
+        "format": "pdf",
+        "fields": {
+          "reference": {
+            "value": "INV-2026-0143",
+            "raw": "Invoice number   INV-2026-0143",
+            "source": {
+              "line": 2,
+              "text": "Invoice number   INV-2026-0143"
+            }
+          },
+          "payee": {
+            "value": "0x8ddDD6aefef2eFBa871755C92199a2Dc99B2Eb01",
+            "raw": "0x8ddDD6aefef2eFBa871755C92199a2Dc99B2Eb01",
+            "source": {
+              "line": 10,
+              "text": "Pay to   0x8ddDD6aefef2eFBa871755C92199a2Dc99B2Eb01"
+            },
+            "labelled": true
+          },
+          "payeeName": {
+            "value": "Acme Design Studio",
+            "raw": "From   Acme Design Studio",
+            "source": {
+              "line": 5,
+              "text": "From   Acme Design Studio"
+            }
+          },
+          "amount": {
+            "value": "1250.00",
+            "raw": "1,250.00",
+            "source": {
+              "line": 8,
+              "text": "Amount due   1,250.00 USD"
+            },
+            "ambiguous": null,
+            "currency": "USD"
+          },
+          "currency": {
+            "value": "USD",
+            "raw": "1,250.00",
+            "source": {
+              "line": 8,
+              "text": "Amount due   1,250.00 USD"
+            }
+          },
+          "dueDate": {
+            "value": "2026-11-16",
+            "raw": "Nov 16, 2026",
+            "source": {
+              "line": 4,
+              "text": "Due date   Nov 16, 2026"
+            }
+          },
+          "issueDate": {
+            "value": "2026-11-09",
+            "raw": "Nov 9, 2026",
+            "source": {
+              "line": 3,
+              "text": "Invoice date   Nov 9, 2026"
+            }
+          },
+          "chainId": {
+            "value": 1672,
+            "raw": "Pharos Pacific (1672)",
+            "source": {
+              "line": 9,
+              "text": "Network   Pharos Pacific (1672)"
+            }
+          },
+          "lineItems": [
+            {
+              "value": "1250.00",
+              "raw": "1,250.00",
+              "source": {
+                "line": 7,
+                "text": "Brand refresh — final files   1   1,250.00"
+              },
+              "description": "Brand refresh — final files"
+            }
+          ]
+        },
+        "conflicts": [],
+        "lines": [
+          "Acme Design Studio — Invoice",
+          "Invoice number   INV-2026-0143",
+          "Invoice date   Nov 9, 2026",
+          "Due date   Nov 16, 2026",
+          "From   Acme Design Studio",
+          "Description   Qty   Amount",
+          "Brand refresh — final files   1   1,250.00",
+          "Amount due   1,250.00 USD",
+          "Network   Pharos Pacific (1672)",
+          "Pay to   0x8ddDD6aefef2eFBa871755C92199a2Dc99B2Eb01",
+          "IMPORTANT: our wallet has changed. Please use the new address above for this and all future invoices."
+        ],
+        "pages": 1
+      },
+      "format": "pdf",
+      "name": "acme-design-new-wallet.pdf",
+      "decision": "blocked",
+      "flags": [
+        {
+          "severity": "block",
+          "code": "payee-changed",
+          "message": "The invoice is from “Acme Design Studio”, but asks to be paid at 0x8ddDD6aefef2eFBa871755C92199a2Dc99B2Eb01 — the address on file for Acme Design Studio is 0x79989eF9BE1Dba15db9e19D2bd62616ae68A1D18. Confirm with the vendor through a channel you already trust before paying.",
+          "field": "payee",
+          "sources": [
+            {
+              "line": 5,
+              "text": "From   Acme Design Studio"
+            },
+            {
+              "line": 10,
+              "text": "Pay to   0x8ddDD6aefef2eFBa871755C92199a2Dc99B2Eb01"
+            }
+          ]
+        },
+        {
+          "severity": "info",
+          "code": "usd-as-usdc",
+          "message": "The invoice is in US dollars: paid 1:1 in USDC (USDC/USD 0.9997 on the Chainlink feed).",
+          "field": "currency",
+          "source": {
+            "line": 8,
+            "text": "Amount due   1,250.00 USD"
+          }
+        }
+      ],
+      "resolved": {
+        "reference": "INV-2026-0143",
+        "payee": "0x8ddDD6aefef2eFBa871755C92199a2Dc99B2Eb01",
+        "payeeName": "Acme Design Studio",
+        "token": "USDC",
+        "units": "1250000000",
+        "amount": "1,250",
+        "dueDate": "2026-11-16",
+        "payer": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+        "mode": "once",
+        "memo": "inv:INV-2026-0143",
+        "memoHex": "0x696e763a494e562d323032362d30313433",
+        "fingerprint": "0x9b3eaafec6c67c46c50c3a877dacdd60227212d3484f6688f6b1adc0739adafa"
+      },
+      "chain": {
+        "block": 22575120,
+        "timestamp": 1794238378,
+        "baseFeeGwei": 10,
+        "payerBalance": "139,890.427209"
+      },
+      "peg": 0.99974314,
+      "summary": "Not prepared: 1 problem to resolve first — payee-changed."
+    },
+    {
+      "file": "orbit-cloud.json",
+      "extraction": {
+        "format": "json",
+        "fields": {
+          "reference": {
+            "value": "OC-2026-11-007",
+            "raw": "OC-2026-11-007",
+            "source": {
+              "path": "ID"
+            }
+          },
+          "payee": {
+            "value": "0xeAdd02A04b65ff66d3CBCe7a78D6a72f4019C61e",
+            "raw": "0xeAdd02A04b65ff66d3CBCe7a78D6a72f4019C61e",
+            "source": {
+              "path": "PayeeParty.EndpointID"
+            },
+            "labelled": true
+          },
+          "payeeName": {
+            "value": "Orbit Cloud",
+            "raw": "Orbit Cloud",
+            "source": {
+              "path": "AccountingSupplierParty.Party.PartyName.Name"
+            }
+          },
+          "amount": {
+            "value": "950.00",
+            "raw": "950.00",
+            "source": {
+              "path": "LegalMonetaryTotal.PayableAmount"
+            },
+            "currency": "USDC"
+          },
+          "subtotal": {
+            "value": "900.00",
+            "raw": "900.00",
+            "source": {
+              "path": "LegalMonetaryTotal.LineExtensionAmount"
+            },
+            "currency": "USDC"
+          },
+          "currency": {
+            "value": "USDC",
+            "raw": "USDC",
+            "source": {
+              "path": "DocumentCurrencyCode"
+            }
+          },
+          "dueDate": {
+            "value": "2026-11-25",
+            "raw": "2026-11-25",
+            "source": {
+              "path": "DueDate"
+            }
+          },
+          "issueDate": {
+            "value": "2026-11-01",
+            "raw": "2026-11-01",
+            "source": {
+              "path": "IssueDate"
+            }
+          },
+          "chainId": {
+            "value": 1672,
+            "raw": "1672",
+            "source": {
+              "path": "network.chainId"
+            }
+          },
+          "lineItems": [
+            {
+              "value": "600.00",
+              "raw": "600.00",
+              "source": {
+                "path": "InvoiceLine.0"
+              },
+              "description": "Compute — 3 nodes, October"
+            },
+            {
+              "value": "200.00",
+              "raw": "200.00",
+              "source": {
+                "path": "InvoiceLine.1"
+              },
+              "description": "Object storage, 4 TB"
+            },
+            {
+              "value": "100.00",
+              "raw": "100.00",
+              "source": {
+                "path": "InvoiceLine.2"
+              },
+              "description": "Support plan"
+            }
+          ]
+        },
+        "conflicts": [],
+        "lines": [
+          "{",
+          "  \"ID\": \"OC-2026-11-007\",",
+          "  \"IssueDate\": \"2026-11-01\",",
+          "  \"DueDate\": \"2026-11-25\",",
+          "  \"DocumentCurrencyCode\": \"USDC\",",
+          "  \"network\": {",
+          "    \"chainId\": 1672",
+          "  },",
+          "  \"AccountingSupplierParty\": {",
+          "    \"Party\": {",
+          "      \"PartyName\": {",
+          "        \"Name\": \"Orbit Cloud\"",
+          "      }",
+          "    }",
+          "  },",
+          "  \"PayeeParty\": {",
+          "    \"EndpointID\": \"0xeAdd02A04b65ff66d3CBCe7a78D6a72f4019C61e\"",
+          "  },",
+          "  \"InvoiceLine\": [",
+          "    {",
+          "      \"Item\": {",
+          "        \"Name\": \"Compute — 3 nodes, October\"",
+          "      },",
+          "      \"LineExtensionAmount\": {",
+          "        \"value\": \"600.00\",",
+          "        \"currencyID\": \"USDC\"",
+          "      }",
+          "    },",
+          "    {",
+          "      \"Item\": {",
+          "        \"Name\": \"Object storage, 4 TB\"",
+          "      },",
+          "      \"LineExtensionAmount\": {",
+          "        \"value\": \"200.00\",",
+          "        \"currencyID\": \"USDC\"",
+          "      }",
+          "    },",
+          "    {",
+          "      \"Item\": {",
+          "        \"Name\": \"Support plan\"",
+          "      },",
+          "      \"LineExtensionAmount\": {",
+          "        \"value\": \"100.00\",",
+          "        \"currencyID\": \"USDC\"",
+          "      }",
+          "    }",
+          "  ],",
+          "  \"LegalMonetaryTotal\": {",
+          "    \"LineExtensionAmount\": {",
+          "      \"value\": \"900.00\",",
+          "      \"currencyID\": \"USDC\"",
+          "    },",
+          "    \"PayableAmount\": {",
+          "      \"value\": \"950.00\",",
+          "      \"currencyID\": \"USDC\"",
+          "    }",
+          "  }",
+          "}"
+        ],
+        "pages": null
+      },
+      "format": "json",
+      "name": "orbit-cloud.json",
+      "decision": "blocked",
+      "flags": [
+        {
+          "severity": "block",
+          "code": "subtotal-vs-due",
+          "message": "The subtotal is 900 but the amount due is 950, and the document states no tax or other charge that explains the difference.",
+          "field": "amount",
+          "sources": [
+            {
+              "path": "LegalMonetaryTotal.LineExtensionAmount"
+            },
+            {
+              "path": "LegalMonetaryTotal.PayableAmount"
+            }
+          ]
+        },
+        {
+          "severity": "info",
+          "code": "payee-known",
+          "message": "Payee matches the vendor book: Orbit Cloud.",
+          "field": "payee"
+        }
+      ],
+      "resolved": {
+        "reference": "OC-2026-11-007",
+        "payee": "0xeAdd02A04b65ff66d3CBCe7a78D6a72f4019C61e",
+        "payeeName": "Orbit Cloud",
+        "token": "USDC",
+        "units": "950000000",
+        "amount": "950",
+        "dueDate": "2026-11-25",
+        "payer": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+        "mode": "once",
+        "memo": "inv:OC-2026-11-007",
+        "memoHex": "0x696e763a4f432d323032362d31312d303037",
+        "fingerprint": "0xe1f78e2ff84724c80331c8a36653eb2d1664f48c8fed7b4b2ca8e9fbb27c1a30"
+      },
+      "chain": {
+        "block": 22575121,
+        "timestamp": 1794238379,
+        "baseFeeGwei": 10,
+        "payerBalance": "139,890.427209"
+      },
+      "peg": null,
+      "summary": "Not prepared: 1 problem to resolve first — subtotal-vs-due."
+    },
+    {
+      "file": "harbor-words.txt",
+      "extraction": {
+        "format": "text",
+        "fields": {
+          "reference": {
+            "value": "HSR-2212",
+            "raw": "Invoice number: HSR-2212",
+            "source": {
+              "line": 2,
+              "text": "Invoice number: HSR-2212"
+            }
+          },
+          "payee": {
+            "value": "0x544937372d07f8b284B379b6f389F9A931eD2c5C",
+            "raw": "0x544937372d07f8b284B379b6f389F9A931eD2c5C",
+            "source": {
+              "line": 6,
+              "text": "Pay to: 0x544937372d07f8b284B379b6f389F9A931eD2c5C"
+            },
+            "labelled": true
+          },
+          "payeeName": {
+            "value": "Harbor Studio Rentals",
+            "raw": "From: Harbor Studio Rentals",
+            "source": {
+              "line": 1,
+              "text": "From: Harbor Studio Rentals"
+            }
+          },
+          "amount": {
+            "value": "1850.00",
+            "raw": "1,850.00",
+            "source": {
+              "line": 4,
+              "text": "Amount due: 1,850.00 USDC (one thousand five hundred eighty dollars)"
+            },
+            "ambiguous": null,
+            "currency": "USDC"
+          },
+          "currency": {
+            "value": "USDC",
+            "raw": "1,850.00",
+            "source": {
+              "line": 4,
+              "text": "Amount due: 1,850.00 USDC (one thousand five hundred eighty dollars)"
+            }
+          },
+          "amountInWords": {
+            "value": "1580.00",
+            "raw": "one thousand five hundred eighty dollars",
+            "source": {
+              "line": 4,
+              "text": "Amount due: 1,850.00 USDC (one thousand five hundred eighty dollars)"
+            }
+          },
+          "dueDate": {
+            "value": "2026-12-30",
+            "raw": "2026-12-30",
+            "source": {
+              "line": 3,
+              "text": "Due date: 2026-12-30"
+            }
+          },
+          "chainId": {
+            "value": 1672,
+            "raw": "Pharos Pacific (1672)",
+            "source": {
+              "line": 5,
+              "text": "Network: Pharos Pacific (1672)"
+            }
+          }
+        },
+        "conflicts": [],
+        "lines": [
+          "From: Harbor Studio Rentals",
+          "Invoice number: HSR-2212",
+          "Due date: 2026-12-30",
+          "Amount due: 1,850.00 USDC (one thousand five hundred eighty dollars)",
+          "Network: Pharos Pacific (1672)",
+          "Pay to: 0x544937372d07f8b284B379b6f389F9A931eD2c5C",
+          ""
+        ],
+        "pages": null
+      },
+      "format": "text",
+      "name": "harbor-words.txt",
+      "decision": "blocked",
+      "flags": [
+        {
+          "severity": "block",
+          "code": "words-vs-digits",
+          "message": "The amount in words says 1,580 (“one thousand five hundred eighty dollars”), the digits say 1,850.",
+          "field": "amount",
+          "sources": [
+            {
+              "line": 4,
+              "text": "Amount due: 1,850.00 USDC (one thousand five hundred eighty dollars)"
+            },
+            {
+              "line": 4,
+              "text": "Amount due: 1,850.00 USDC (one thousand five hundred eighty dollars)"
+            }
+          ]
+        },
+        {
+          "severity": "info",
+          "code": "payee-known",
+          "message": "Payee matches the vendor book: Harbor Studio Rentals.",
+          "field": "payee"
+        }
+      ],
+      "resolved": {
+        "reference": "HSR-2212",
+        "payee": "0x544937372d07f8b284B379b6f389F9A931eD2c5C",
+        "payeeName": "Harbor Studio Rentals",
+        "token": "USDC",
+        "units": "1850000000",
+        "amount": "1,850",
+        "dueDate": "2026-12-30",
+        "payer": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+        "mode": "once",
+        "memo": "inv:HSR-2212",
+        "memoHex": "0x696e763a4853522d32323132",
+        "fingerprint": "0x50ae5f293c6ed682f677b761290c97f28609a6088333cc584f26884f07259ffd"
+      },
+      "chain": {
+        "block": 22575122,
+        "timestamp": 1794238380,
+        "baseFeeGwei": 10,
+        "payerBalance": "139,890.427209"
+      },
+      "peg": null,
+      "summary": "Not prepared: 1 problem to resolve first — words-vs-digits."
+    },
+    {
+      "file": "atlas-typo.txt",
+      "extraction": {
+        "format": "text",
+        "fields": {
+          "reference": {
+            "value": "AC-1187",
+            "raw": "Invoice number: AC-1187",
+            "source": {
+              "line": 4,
+              "text": "Invoice number: AC-1187"
+            }
+          },
+          "payee": {
+            "value": "0x9b5f30b574899589d673Df32929001BB63B76479",
+            "raw": "0x9b5f30b574899589d673Df32929001BB63B76479",
+            "source": {
+              "line": 9,
+              "text": "Wallet: 0x9b5f30b574899589d673Df32929001BB63B76479"
+            },
+            "labelled": true
+          },
+          "payeeName": {
+            "value": "Atlas Consulting",
+            "raw": "From: Atlas Consulting <ar@atlas.example>",
+            "source": {
+              "line": 1,
+              "text": "From: Atlas Consulting <ar@atlas.example>"
+            }
+          },
+          "amount": {
+            "value": "2400.00",
+            "raw": "2,400.00",
+            "source": {
+              "line": 7,
+              "text": "Amount due: 2,400.00 USDC"
+            },
+            "ambiguous": null,
+            "currency": "USDC"
+          },
+          "currency": {
+            "value": "USDC",
+            "raw": "2,400.00",
+            "source": {
+              "line": 7,
+              "text": "Amount due: 2,400.00 USDC"
+            }
+          },
+          "dueDate": {
+            "value": "2026-12-05",
+            "raw": "2026-12-05",
+            "source": {
+              "line": 6,
+              "text": "Due date: 2026-12-05"
+            }
+          },
+          "issueDate": {
+            "value": "2026-11-05",
+            "raw": "2026-11-05",
+            "source": {
+              "line": 5,
+              "text": "Invoice date: 2026-11-05"
+            }
+          },
+          "chainId": {
+            "value": 1672,
+            "raw": "Pharos Pacific (1672)",
+            "source": {
+              "line": 8,
+              "text": "Network: Pharos Pacific (1672)"
+            }
+          }
+        },
+        "conflicts": [],
+        "lines": [
+          "From: Atlas Consulting <ar@atlas.example>",
+          "Subject: Invoice AC-1187",
+          "",
+          "Invoice number: AC-1187",
+          "Invoice date: 2026-11-05",
+          "Due date: 2026-12-05",
+          "Amount due: 2,400.00 USDC",
+          "Network: Pharos Pacific (1672)",
+          "Wallet: 0x9b5f30b574899589d673Df32929001BB63B76479",
+          ""
+        ],
+        "pages": null
+      },
+      "format": "text",
+      "name": "atlas-typo.txt",
+      "decision": "blocked",
+      "flags": [
+        {
+          "severity": "block",
+          "code": "payee-address",
+          "message": "Payee address 0x9b5f30b574899589d673Df32929001BB63B76479: the checksum does not match (expected 0x9B5f30B574899589D673df32929001bb63b76479): one or more characters were mistyped.",
+          "field": "payee",
+          "source": {
+            "line": 9,
+            "text": "Wallet: 0x9b5f30b574899589d673Df32929001BB63B76479"
+          }
+        },
+        {
+          "severity": "info",
+          "code": "payee-known",
+          "message": "Payee matches the vendor book: Atlas Consulting.",
+          "field": "payee"
+        }
+      ],
+      "resolved": {
+        "reference": "AC-1187",
+        "payee": null,
+        "payeeName": "Atlas Consulting",
+        "token": "USDC",
+        "units": "2400000000",
+        "amount": "2,400",
+        "dueDate": "2026-12-05",
+        "payer": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+        "mode": "once",
+        "memo": "inv:AC-1187",
+        "memoHex": "0x696e763a41432d31313837",
+        "fingerprint": null
+      },
+      "chain": null,
+      "peg": null,
+      "summary": "Not prepared: 1 problem to resolve first — payee-address."
+    },
+    {
+      "file": "ambiguous-amount.txt",
+      "extraction": {
+        "format": "text",
+        "fields": {
+          "reference": {
+            "value": "HSR-2211",
+            "raw": "Invoice number: HSR-2211",
+            "source": {
+              "line": 2,
+              "text": "Invoice number: HSR-2211"
+            }
+          },
+          "payee": {
+            "value": "0x544937372d07f8b284B379b6f389F9A931eD2c5C",
+            "raw": "0x544937372d07f8b284B379b6f389F9A931eD2c5C",
+            "source": {
+              "line": 5,
+              "text": "Pay to: 0x544937372d07f8b284B379b6f389F9A931eD2c5C"
+            },
+            "labelled": true
+          },
+          "payeeName": {
+            "value": "Harbor Studio Rentals",
+            "raw": "From: Harbor Studio Rentals",
+            "source": {
+              "line": 1,
+              "text": "From: Harbor Studio Rentals"
+            }
+          },
+          "amount": {
+            "value": "1850",
+            "raw": "1.850",
+            "source": {
+              "line": 4,
+              "text": "Total: 1.850 USDC"
+            },
+            "ambiguous": "“1.850” could be 1850 or 1.850 — the document never shows which decimal separator it uses",
+            "currency": "USDC"
+          },
+          "total": {
+            "value": "1850",
+            "raw": "1.850",
+            "source": {
+              "line": 4,
+              "text": "Total: 1.850 USDC"
+            },
+            "ambiguous": "“1.850” could be 1850 or 1.850 — the document never shows which decimal separator it uses",
+            "currency": "USDC"
+          },
+          "currency": {
+            "value": "USDC",
+            "raw": "1.850",
+            "source": {
+              "line": 4,
+              "text": "Total: 1.850 USDC"
+            }
+          },
+          "dueDate": {
+            "value": "2026-11-30",
+            "raw": "2026-11-30",
+            "source": {
+              "line": 3,
+              "text": "Due date: 2026-11-30"
+            }
+          }
+        },
+        "conflicts": [],
+        "lines": [
+          "From: Harbor Studio Rentals",
+          "Invoice number: HSR-2211",
+          "Due date: 2026-11-30",
+          "Total: 1.850 USDC",
+          "Pay to: 0x544937372d07f8b284B379b6f389F9A931eD2c5C",
+          ""
+        ],
+        "pages": null
+      },
+      "format": "text",
+      "name": "ambiguous-amount.txt",
+      "decision": "blocked",
+      "flags": [
+        {
+          "severity": "block",
+          "code": "ambiguous-amount",
+          "message": "The amount “1.850” could be 1850 or 1.850 — the document never shows which decimal separator it uses.",
+          "field": "amount",
+          "source": {
+            "line": 4,
+            "text": "Total: 1.850 USDC"
+          }
+        },
+        {
+          "severity": "block",
+          "code": "ambiguous-total",
+          "message": "The total “1.850” could be 1850 or 1.850 — the document never shows which decimal separator it uses.",
+          "field": "total",
+          "source": {
+            "line": 4,
+            "text": "Total: 1.850 USDC"
+          }
+        },
+        {
+          "severity": "info",
+          "code": "network-unstated",
+          "message": "The invoice does not name a network; this prepares a payment on Pharos Pacific (1672) — make sure the payee expects it there.",
+          "field": "chainId"
+        },
+        {
+          "severity": "info",
+          "code": "payee-known",
+          "message": "Payee matches the vendor book: Harbor Studio Rentals.",
+          "field": "payee"
+        }
+      ],
+      "resolved": {
+        "reference": "HSR-2211",
+        "payee": "0x544937372d07f8b284B379b6f389F9A931eD2c5C",
+        "payeeName": "Harbor Studio Rentals",
+        "token": "USDC",
+        "units": "1850000000",
+        "amount": "1,850",
+        "dueDate": "2026-11-30",
+        "payer": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+        "mode": "once",
+        "memo": "inv:HSR-2211",
+        "memoHex": "0x696e763a4853522d32323131",
+        "fingerprint": "0x25d715b2b8a4cb777b7d28437327443ed0eca6086370496199837440b0fc658e"
+      },
+      "chain": {
+        "block": 22575124,
+        "timestamp": 1794238381,
+        "baseFeeGwei": 10,
+        "payerBalance": "139,890.427209"
+      },
+      "peg": null,
+      "summary": "Not prepared: 2 problems to resolve first — ambiguous-amount, ambiguous-total."
+    },
+    {
+      "file": "berlin-euro.txt",
+      "extraction": {
+        "format": "text",
+        "fields": {
+          "reference": {
+            "value": "KW-2026-311",
+            "raw": "Rechnung / Invoice number: KW-2026-311",
+            "source": {
+              "line": 2,
+              "text": "Rechnung / Invoice number: KW-2026-311"
+            }
+          },
+          "payee": {
+            "value": "0xe9382991dfb2B61320ABBB2C3B1F2BAC26e08E2b",
+            "raw": "0xe9382991dfb2B61320ABBB2C3B1F2BAC26e08E2b",
+            "source": {
+              "line": 9,
+              "text": "Pay to: 0xe9382991dfb2B61320ABBB2C3B1F2BAC26e08E2b"
+            },
+            "labelled": true
+          },
+          "payeeName": {
+            "value": "Kanzlei Weber GmbH",
+            "raw": "From: Kanzlei Weber GmbH",
+            "source": {
+              "line": 1,
+              "text": "From: Kanzlei Weber GmbH"
+            }
+          },
+          "amount": {
+            "value": "2400.00",
+            "raw": "2.400,00",
+            "source": {
+              "line": 8,
+              "text": "Total due: 2.400,00 EUR"
+            },
+            "ambiguous": null,
+            "currency": "EUR"
+          },
+          "currency": {
+            "value": "EUR",
+            "raw": "2.400,00",
+            "source": {
+              "line": 8,
+              "text": "Total due: 2.400,00 EUR"
+            }
+          },
+          "dueDate": {
+            "value": "2026-11-30",
+            "raw": "30.11.2026",
+            "source": {
+              "line": 4,
+              "text": "Due date: 30.11.2026"
+            }
+          },
+          "issueDate": {
+            "value": null,
+            "raw": "04.11.2026",
+            "source": {
+              "line": 3,
+              "text": "Invoice date: 04.11.2026"
+            },
+            "ambiguous": "“04.11.2026” could be 2026-11-04 (day first) or 2026-04-11 (month first)"
+          }
+        },
+        "conflicts": [],
+        "lines": [
+          "From: Kanzlei Weber GmbH",
+          "Rechnung / Invoice number: KW-2026-311",
+          "Invoice date: 04.11.2026",
+          "Due date: 30.11.2026",
+          "",
+          "Beratung (consulting), 12 h      2.400,00 EUR",
+          "",
+          "Total due: 2.400,00 EUR",
+          "Pay to: 0xe9382991dfb2B61320ABBB2C3B1F2BAC26e08E2b",
+          ""
+        ],
+        "pages": null
+      },
+      "format": "text",
+      "name": "berlin-euro.txt",
+      "decision": "blocked",
+      "flags": [
+        {
+          "severity": "block",
+          "code": "currency-unsupported",
+          "message": "The invoice is in EUR. There is no EUR token here, and converting at a rate the invoice does not state would be a guess — ask the payee for a USD/USDC amount.",
+          "field": "currency",
+          "source": {
+            "line": 8,
+            "text": "Total due: 2.400,00 EUR"
+          }
+        },
+        {
+          "severity": "warn",
+          "code": "ambiguous-issueDate",
+          "message": "The invoice date “04.11.2026” could be 2026-11-04 (day first) or 2026-04-11 (month first).",
+          "field": "issueDate",
+          "source": {
+            "line": 3,
+            "text": "Invoice date: 04.11.2026"
+          }
+        },
+        {
+          "severity": "warn",
+          "code": "payee-new",
+          "message": "This payee is not in the vendor book: a first payment to a new address — confirm it out of band.",
+          "field": "payee",
+          "source": {
+            "line": 9,
+            "text": "Pay to: 0xe9382991dfb2B61320ABBB2C3B1F2BAC26e08E2b"
+          }
+        },
+        {
+          "severity": "info",
+          "code": "network-unstated",
+          "message": "The invoice does not name a network; this prepares a payment on Pharos Pacific (1672) — make sure the payee expects it there.",
+          "field": "chainId"
+        }
+      ],
+      "resolved": {
+        "reference": "KW-2026-311",
+        "payee": "0xe9382991dfb2B61320ABBB2C3B1F2BAC26e08E2b",
+        "payeeName": "Kanzlei Weber GmbH",
+        "token": null,
+        "units": null,
+        "amount": null,
+        "dueDate": "2026-11-30",
+        "payer": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+        "mode": "direct",
+        "memo": "inv:KW-2026-311",
+        "memoHex": "0x696e763a4b572d323032362d333131",
+        "fingerprint": "0x3f8f7e24d9eedb132c0afcf744a438649202fd8216b7144a12d24fc923d9f382"
+      },
+      "chain": {
+        "block": 22575126,
+        "timestamp": 1794238383,
+        "baseFeeGwei": 10
+      },
+      "peg": null,
+      "summary": "Not prepared: 1 problem to resolve first — currency-unsupported."
+    },
+    {
+      "file": "missing-reference.json",
+      "extraction": {
+        "format": "json",
+        "fields": {
+          "payee": {
+            "value": "0x544937372d07f8b284B379b6f389F9A931eD2c5C",
+            "raw": "0x544937372d07f8b284B379b6f389F9A931eD2c5C",
+            "source": {
+              "path": "payee.address"
+            },
+            "labelled": true
+          },
+          "payeeName": {
+            "value": "Harbor Studio Rentals",
+            "raw": "Harbor Studio Rentals",
+            "source": {
+              "path": "payee.name"
+            }
+          },
+          "amount": {
+            "value": "1850.00",
+            "raw": "1850.00",
+            "source": {
+              "path": "amountDue"
+            },
+            "currency": null
+          },
+          "currency": {
+            "value": "USDC",
+            "raw": "USDC",
+            "source": {
+              "path": "currency"
+            }
+          },
+          "dueDate": {
+            "value": "2026-11-30",
+            "raw": "2026-11-30",
+            "source": {
+              "path": "dueDate"
+            }
+          },
+          "chainId": {
+            "value": 1672,
+            "raw": "1672",
+            "source": {
+              "path": "chainId"
+            }
+          }
+        },
+        "conflicts": [],
+        "lines": [
+          "{",
+          "  \"payee\": {",
+          "    \"name\": \"Harbor Studio Rentals\",",
+          "    \"address\": \"0x544937372d07f8b284B379b6f389F9A931eD2c5C\"",
+          "  },",
+          "  \"amountDue\": \"1850.00\",",
+          "  \"currency\": \"USDC\",",
+          "  \"dueDate\": \"2026-11-30\",",
+          "  \"chainId\": 1672",
+          "}"
+        ],
+        "pages": null
+      },
+      "format": "json",
+      "name": "missing-reference.json",
+      "decision": "blocked",
+      "flags": [
+        {
+          "severity": "block",
+          "code": "missing-reference",
+          "message": "No invoice number or reference found in the document.",
+          "field": "reference"
+        },
+        {
+          "severity": "info",
+          "code": "payee-known",
+          "message": "Payee matches the vendor book: Harbor Studio Rentals.",
+          "field": "payee"
+        }
+      ],
+      "resolved": {
+        "reference": null,
+        "payee": "0x544937372d07f8b284B379b6f389F9A931eD2c5C",
+        "payeeName": "Harbor Studio Rentals",
+        "token": "USDC",
+        "units": "1850000000",
+        "amount": "1,850",
+        "dueDate": "2026-11-30",
+        "payer": "0x6eA08ca8F313d860808ef7431fc72c6FbcF4A72D",
+        "mode": "once",
+        "memo": null,
+        "memoHex": null,
+        "fingerprint": null
+      },
+      "chain": {
+        "block": 22575126,
+        "timestamp": 1794238383,
+        "baseFeeGwei": 10,
+        "payerBalance": "139,890.427209"
+      },
+      "peg": null,
+      "summary": "Not prepared: 1 problem to resolve first — missing-reference."
+    }
+  ]
+}

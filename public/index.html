@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pharos Invoice Pay</title>
+  <meta name="description" content="A SkillEngine skill that reads an invoice — text, PDF, JSON or an EIP-681 request — flags what does not add up instead of guessing, and prepares the payment on Pharos with the invoice reference inside the transaction." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --paper:#f1efe8; --card:#fffdf8; --ink:#18191d; --muted:#686a72; --line:#e2ddd1; --line-2:#ccc6b8; --brand:#0033ff; --ok:#1d7a4d; --ok-soft:#e3f2e8; --warn:#9a5b00; --warn-soft:#fbeed6; --bad:#c2311f; --bad-soft:#fbe6e2; --hl:#fff3b0; --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace; --sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif; }
+    * { box-sizing: border-box; }
+    html { color-scheme: light; }
+    body { margin: 0; font: 15px/1.5 var(--sans); color: var(--ink); background: var(--paper); }
+    a { color: var(--brand); }
+    .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+    .top { position: sticky; top: 0; z-index: 10; background: var(--paper); display: flex; align-items: center; gap: 16px; padding: 14px 40px; border-bottom: 1px solid var(--line); }
+    .brand { display: flex; gap: 10px; align-items: center; color: inherit; text-decoration: none; }
+    .brand b { font-size: 14px; letter-spacing: .12em; font-weight: 800; } .brand em { font-style: normal; color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .1em; }
+    .spacer { flex: 1; } .links a { font-size: 13px; font-weight: 600; color: var(--ink); text-decoration: none; margin-right: 14px; }
+    .lang button { border: 1px solid var(--line-2); background: var(--card); padding: 6px 11px; font: 600 12px var(--sans); cursor: pointer; color: var(--ink); }
+    .lang button:first-child { border-radius: 999px 0 0 999px; } .lang button:last-child { border-radius: 0 999px 999px 0; border-left: 0; }
+    .lang button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+    main { max-width: 1240px; margin: 0 auto; padding: 40px 40px 24px; display: grid; gap: 22px; }
+    .kicker { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--brand); margin: 0 0 10px; }
+    h1 { font-size: clamp(34px, 6vw, 56px); line-height: .95; letter-spacing: -.04em; margin: 0 0 12px; }
+    .lead { color: var(--muted); margin: 0; font-size: 17px; max-width: 66ch; }
+    section.panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; min-width: 0; }
+    .panel h2 { font-size: 17px; margin: 0 0 4px; letter-spacing: -.01em; }
+    .sub { color: var(--muted); font-size: 13.5px; margin: 0 0 16px; max-width: 86ch; }
+    .btn { padding: 8px 16px; border: 0; border-radius: 999px; background: var(--ink); color: #fff; font: 600 13px var(--sans); cursor: pointer; white-space: nowrap; }
+    .btn:disabled { opacity: .45; cursor: progress; } .btn.ghost { background: var(--card); color: var(--ink); border: 1px solid var(--line-2); }
+    .muted { color: var(--muted); } .err { color: var(--bad); }
+    .chip { display: inline-block; font: 700 10.5px var(--sans); letter-spacing: .07em; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; white-space: nowrap; }
+    .d-ready { background: var(--ok-soft); color: var(--ok); } .d-review { background: var(--warn-soft); color: var(--warn); } .d-blocked { background: var(--bad-soft); color: var(--bad); }
+    /* desk */
+    .desk { display: grid; grid-template-columns: 250px minmax(0, 1fr) minmax(0, 1.05fr); gap: 16px; align-items: start; }
+    .inbox { display: grid; gap: 6px; }
+    .inbox button { text-align: left; border: 1px solid var(--line); background: var(--card); border-radius: 10px; padding: 9px 11px; cursor: pointer; font: inherit; color: inherit; display: grid; gap: 3px; }
+    .inbox button.on { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+    .inbox .t { font-size: 13px; font-weight: 600; overflow-wrap: anywhere; } .inbox .m { display: flex; gap: 6px; align-items: center; font: 11px var(--mono); color: var(--muted); }
+    .doc { border: 1px solid var(--line); border-radius: 12px; background: #fff; overflow: hidden; }
+    .doc .bar { display: flex; gap: 10px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+    .doc pre { margin: 0; padding: 10px 0; font: 12px/1.65 var(--mono); max-height: 560px; overflow: auto; }
+    .doc .ln { display: flex; padding: 0 12px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .doc .ln i { font-style: normal; color: #b3b0a6; min-width: 34px; text-align: right; padding-right: 12px; user-select: none; flex: none; }
+    .doc .ln.src { background: #fbf8e8; } .doc .ln.hl { background: var(--hl); box-shadow: inset 3px 0 #e0b400; }
+    .doc .ln.bad { background: var(--bad-soft); box-shadow: inset 3px 0 var(--bad); }
+    .side { display: grid; gap: 14px; min-width: 0; }
+    .verdict { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; }
+    .verdict.ready { background: var(--ok-soft); } .verdict.review { background: var(--warn-soft); } .verdict.blocked { background: var(--bad-soft); }
+    .verdict b { font: 800 13px var(--sans); letter-spacing: .1em; } .verdict.ready b { color: var(--ok); } .verdict.review b { color: var(--warn); } .verdict.blocked b { color: var(--bad); }
+    .verdict p { margin: 0; font-size: 13.5px; }
+    .fields { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    .fields td { padding: 6px 8px 6px 0; border-top: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; } .fields tr:first-child td { border-top: 0; }
+    .fields td:first-child { color: var(--muted); white-space: nowrap; width: 1%; }
+    .fields tr.clk { cursor: pointer; } .fields tr.clk:hover td { background: #f7f4ea; } .fields .v { font-family: var(--mono); }
+    .fields .from { font-size: 11px; color: var(--muted); }
+    .flags { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+    .flags li { font-size: 13px; padding: 8px 10px; border-radius: 8px; border-left: 3px solid; cursor: default; }
+    .flags li.block { background: var(--bad-soft); border-color: var(--bad); } .flags li.warn { background: var(--warn-soft); border-color: var(--warn); } .flags li.info { background: #f2f1ec; border-color: var(--line-2); color: #45474d; }
+    .flags li.clk { cursor: pointer; }
+    .flags .sev { font: 700 10px var(--sans); letter-spacing: .08em; text-transform: uppercase; margin-right: 6px; }
+    .h3 { font: 700 11px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+    .code { background: #15161b; color: #e6e8ef; border-radius: 8px; padding: 10px 12px; font: 11.5px/1.55 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; max-height: 280px; overflow: auto; }
+    .code mark { background: #ffd84d; color: #15161b; border-radius: 2px; }
+    .memo { font: 600 13px var(--mono); background: #fff7cc; border: 1px dashed #e0b400; padding: 6px 10px; border-radius: 8px; display: inline-block; margin: 2px 0 8px; overflow-wrap: anywhere; }
+    /* own invoice */
+    .mine { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; }
+    .mine textarea { width: 100%; min-height: 180px; padding: 10px; border: 1px solid var(--line-2); border-radius: 10px; background: #fff; font: 12px/1.55 var(--mono); color: var(--ink); resize: vertical; }
+    .mine label { display: block; font: 600 12px var(--sans); color: var(--muted); margin: 0 0 4px; }
+    .mine input[type=text] { width: 100%; padding: 8px 10px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--paper); font: 12.5px var(--mono); color: var(--ink); }
+    /* fork */
+    .pays { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .pay { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; min-width: 0; font-size: 13px; display: grid; gap: 6px; align-content: start; }
+    .pay .tag { font: 700 11px var(--mono); color: var(--brand); } .pay .ok { color: var(--ok); font-weight: 700; } .pay .no { color: var(--bad); font-weight: 700; }
+    .pay .hash { font: 11px var(--mono); color: var(--muted); overflow-wrap: anywhere; }
+    .after { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .after > div { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 13px; }
+    .quote { font: 12px var(--mono); background: var(--bad-soft); color: var(--bad); padding: 1px 6px; border-radius: 4px; }
+    .how { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .how div { font-size: 13px; } .how b { display: block; margin-bottom: 4px; font-size: 13.5px; } .how span { color: var(--muted); }
+    footer { color: var(--muted); font-size: 12.5px; max-width: 1240px; margin: 0 auto; padding: 4px 40px 44px; } footer a { color: var(--muted); }
+    [hidden] { display: none !important; }
+    @media (max-width: 1100px) { .desk { grid-template-columns: 220px minmax(0, 1fr); } .side { grid-column: 1 / -1; } }
+    @media (max-width: 760px) {
+      .top { padding: 12px 16px; } main { padding: 26px 16px 16px; } footer { padding: 4px 16px 32px; } .brand em, .links { display: none; }
+      section.panel { padding: 16px; } .desk, .mine, .pays, .after, .how { grid-template-columns: 1fr; }
+      .inbox { grid-template-columns: 1fr 1fr; } .doc pre { max-height: 360px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#"><svg width="22" height="22" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="8" fill="#0033ff"/><path d="M10 7h11l5 5v15H10z" fill="#fff"/><path d="M13 16h9M13 20h9M13 24h5" stroke="#0033ff" stroke-width="2"/></svg><span><b>PHAROS</b> <em>INVOICE PAY</em></span></a>
+    <span class="spacer"></span>
+    <nav class="links"><a href="https://github.com/juhzinho/pharos-invoice-pay" target="_blank" rel="noopener">GitHub</a><a href="https://github.com/juhzinho/pharos-invoice-pay/blob/main/skill/pharos-invoice-pay/SKILL.md" target="_blank" rel="noopener">SKILL.md</a></nav>
+    <div class="lang"><button data-lang="en">EN</button><button data-lang="pt">PT</button></div>
+  </header>
+
+  <main>
+    <section>
+      <p class="kicker">SkillEngine · Medium · Pharos Pacific</p>
+      <h1>Invoice Pay</h1>
+      <p class="lead" data-i="lead"></p>
+    </section>
+
+    <section class="panel">
+      <h2 data-i="deskTitle"></h2>
+      <p class="sub" id="deskSub"></p>
+      <div class="desk">
+        <div class="inbox" id="inbox"></div>
+        <div class="doc"><div class="bar"><span id="docName" class="num"></span><span class="spacer"></span><a id="docOpen" target="_blank" rel="noopener"></a></div><pre id="docBody"></pre></div>
+        <div class="side" id="side"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 data-i="mineTitle"></h2>
+      <p class="sub" data-i="mineSub"></p>
+      <div class="mine">
+        <div><label for="mText" data-i="mText"></label><textarea id="mText" spellcheck="false"></textarea></div>
+        <div>
+          <label for="mFile" data-i="mFile"></label><input type="file" id="mFile" accept=".pdf,.txt,.json,application/pdf,text/plain,application/json" />
+          <div style="height:12px"></div>
+          <label for="mPayer" data-i="mPayer"></label><input type="text" id="mPayer" spellcheck="false" autocomplete="off" />
+          <div style="height:12px"></div>
+          <button class="btn" id="mBtn" data-i="mBtn"></button>
+          <p class="muted" id="mMsg" style="font-size:13px"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 data-i="forkTitle"></h2>
+      <p class="sub" id="forkSub"></p>
+      <div class="pays" id="pays"></div>
+      <div class="after" id="after"></div>
+    </section>
+
+    <section class="panel">
+      <h2 data-i="howTitle"></h2>
+      <div class="how" id="how" style="margin-top:12px"></div>
+    </section>
+  </main>
+  <footer id="footer"></footer>
+
+  <script type="module">
+    const T = {
+      en: {
+        lead: "Give it an invoice — an e-mail, a PDF, structured JSON or a wallet payment link. It shows where every field came from, stops on anything that does not add up instead of guessing, and prepares the payment with the invoice reference written into the transaction itself.",
+        deskTitle: "Ten invoices, checked live on Pacific", deskSub: (b, d) => `Four formats; three are clean, seven each hide one real problem. Checked against Pharos Pacific mainnet at block ${b} (${d}) with a real wallet as the payer and a demo vendor book. Click a field or a flag to see the line it comes from.`,
+        fmt: { text: "e-mail / text", pdf: "PDF", json: "JSON", eip681: "EIP-681 link", "pdf+eip681": "PDF + EIP-681" },
+        decision: { ready: "ready", review: "review", blocked: "blocked" },
+        open: "open original", lines: (n, p) => `${n} lines${p ? ` · ${p} page${p > 1 ? "s" : ""} of PDF text` : ""}`,
+        f: { reference: "reference", payee: "payee", payeeName: "payee name", amount: "amount due", currency: "currency", total: "total", subtotal: "subtotal", tax: "tax", paid: "paid", dueDate: "due date", issueDate: "invoice date", chainId: "network", amountInWords: "in words", lineItems: "line item" },
+        from: (s) => (s.path ? `from ${s.path}` : s.param ? `from line ${s.line} · URI ${s.param}` : `from line ${s.line}`),
+        unreadable: "unreadable", sev: { block: "blocks", warn: "check", info: "note" },
+        hRead: "Read from the document", hFlags: "Checks", hPay: "The payment",
+        memo: "Invoice reference, inside the transaction:", txTitle: "Unsigned transaction (memo highlighted at the end of the data)", signTitle: "What the payer signs once (EIP-3009, nonce = this invoice's fingerprint)", fingerprint: "invoice fingerprint",
+        once: "“once” mode: the payer signs one USDC authorization whose nonce is this invoice's fingerprint, so the same invoice number to the same payee can be paid only once. Then any account can send it — the memo rides along.",
+        direct: "“direct” mode: a transfer from the payer with the memo.",
+        mineTitle: "Check your own invoice", mineSub: "Paste text or JSON, or pick a PDF. It is read and checked live on Pacific against the demo vendor book above; nothing is stored, signed or sent.",
+        mText: "Invoice text or JSON", mFile: "…or a PDF / .txt / .json file", mPayer: "Paying wallet (optional — for balance and duplicate checks)", mBtn: "Check it", running: "Reading and checking on Pacific… (~3–10 s)", tooBig: "The file is larger than 2 MB.",
+        forkTitle: "Paid for real on a fork — and read back from the chain", forkSub: (b) => `An Anvil fork of Pacific mainnet at block ${b}; fresh test wallets funded on the fork only. The three clean invoices are paid exactly as prepared, then every transaction is read back from chain: the memo is decoded from its input data and what moved is matched to the invoice.`,
+        sentBy: (who, sig) => `signed: ${sig} · sent by ${who}`, matches: "matches the invoice", gas: "gas",
+        dupTitle: "The same invoice, again", dup: (h) => `The check now blocks it: already paid by this wallet — and it finds which transaction: <code>${h}</code>.`, replay: (s, r) => `The same authorization re-sent anyway: ${s} — <span class="quote">${r}</span>`,
+        wrongTitle: "The wrong invoice", wrong: (d) => `Acme's payment checked against Lumen's invoice: does not match (${d} differ).`,
+        howTitle: "How it works",
+        how: [["1 · Read", "Text and e-mail, PDF (pdf.js, columns kept apart), JSON (simple or UBL-style keys), EIP-681 links. Every field keeps its source line or path; two different values for one field are a conflict, not a choice."], ["2 · Check", "Missing fields, checksum typos, a known vendor asking to be paid somewhere new, totals that do not add up, words vs digits, ambiguous separators and dates, currencies with no token, wrong network, balance, already paid."], ["3 · Prepare", "A summary in plain words and the unsigned transaction with “inv:<reference>” after the call's arguments. For USDC, an authorization whose nonce is the invoice's fingerprint: payable once."], ["4 · Verify", "Any transaction hash: the memo decoded from the input data, the Transfer that actually happened, and whether both match the invoice."]],
+        footer: (r) => `Live checks recorded on Pharos Pacific ${r}. Nothing on this page signs or sends a transaction.`,
+        errNet: "Could not reach the checker. Try again in a minute.",
+      },
+      pt: {
+        lead: "Entregue uma fatura — um e-mail, um PDF, um JSON estruturado ou um link de pagamento de carteira. Ele mostra de onde veio cada campo, para em tudo que não fecha em vez de chutar, e prepara o pagamento com a referência da fatura escrita dentro da própria transação.",
+        deskTitle: "Dez faturas, conferidas ao vivo na Pacific", deskSub: (b, d) => `Quatro formatos; três estão limpas, sete escondem um problema real cada. Conferidas na mainnet Pharos Pacific no bloco ${b} (${d}) com uma carteira real como pagadora e um cadastro de fornecedores de demonstração. Clique num campo ou numa sinalização para ver a linha de onde veio.`,
+        fmt: { text: "e-mail / texto", pdf: "PDF", json: "JSON", eip681: "link EIP-681", "pdf+eip681": "PDF + EIP-681" },
+        decision: { ready: "pronta", review: "revisar", blocked: "bloqueada" },
+        open: "abrir original", lines: (n, p) => `${n} linhas${p ? ` · ${p} página${p > 1 ? "s" : ""} de texto do PDF` : ""}`,
+        f: { reference: "referência", payee: "beneficiário", payeeName: "nome", amount: "valor devido", currency: "moeda", total: "total", subtotal: "subtotal", tax: "imposto", paid: "pago", dueDate: "vencimento", issueDate: "emissão", chainId: "rede", amountInWords: "por extenso", lineItems: "item" },
+        from: (s) => (s.path ? `de ${s.path}` : s.param ? `da linha ${s.line} · URI ${s.param}` : `da linha ${s.line}`),
+        unreadable: "ilegível", sev: { block: "bloqueia", warn: "confira", info: "nota" },
+        hRead: "Lido do documento", hFlags: "Checagens", hPay: "O pagamento",
+        memo: "Referência da fatura, dentro da transação:", txTitle: "Transação não assinada (memo destacado no fim dos dados)", signTitle: "O que o pagador assina uma vez (EIP-3009, nonce = impressão digital desta fatura)", fingerprint: "impressão digital da fatura",
+        once: "Modo “once”: o pagador assina uma autorização de USDC cujo nonce é a impressão digital desta fatura, então o mesmo número de fatura para o mesmo beneficiário só pode ser pago uma vez. Depois qualquer conta pode enviá-la — o memo vai junto.",
+        direct: "Modo “direct”: uma transferência do pagador com o memo.",
+        mineTitle: "Confira a sua fatura", mineSub: "Cole texto ou JSON, ou escolha um PDF. Ela é lida e conferida ao vivo na Pacific contra o cadastro de demonstração acima; nada é guardado, assinado ou enviado.",
+        mText: "Texto ou JSON da fatura", mFile: "…ou um arquivo PDF / .txt / .json", mPayer: "Carteira pagadora (opcional — para saldo e duplicidade)", mBtn: "Conferir", running: "Lendo e conferindo na Pacific… (~3–10 s)", tooBig: "O arquivo passa de 2 MB.",
+        forkTitle: "Pago de verdade num fork — e lido de volta da rede", forkSub: (b) => `Um fork Anvil da mainnet Pacific no bloco ${b}; carteiras de teste novas abastecidas só no fork. As três faturas limpas são pagas exatamente como preparadas, e cada transação é lida de volta da rede: o memo é decodificado dos dados de entrada e o que se moveu é comparado com a fatura.`,
+        sentBy: (who, sig) => `assinado: ${sig} · enviado por ${who}`, matches: "bate com a fatura", gas: "gás",
+        dupTitle: "A mesma fatura, de novo", dup: (h) => `A checagem agora bloqueia: já paga por esta carteira — e encontra qual transação: <code>${h}</code>.`, replay: (s, r) => `A mesma autorização reenviada mesmo assim: ${s} — <span class="quote">${r}</span>`,
+        wrongTitle: "A fatura errada", wrong: (d) => `O pagamento da Acme conferido contra a fatura da Lumen: não bate (${d} diferem).`,
+        howTitle: "Como funciona",
+        how: [["1 · Lê", "Texto e e-mail, PDF (pdf.js, colunas separadas), JSON (simples ou com chaves UBL), links EIP-681. Cada campo guarda a linha ou o caminho de origem; dois valores diferentes para o mesmo campo são um conflito, não uma escolha."], ["2 · Confere", "Campos faltando, checksum com erro de digitação, fornecedor conhecido pedindo para receber em outro lugar, totais que não fecham, extenso × números, separadores e datas ambíguos, moeda sem token, rede errada, saldo, já pago."], ["3 · Prepara", "Um resumo em palavras simples e a transação não assinada com “inv:<referência>” depois dos argumentos da chamada. Para USDC, uma autorização cujo nonce é a impressão digital da fatura: paga uma vez só."], ["4 · Verifica", "Qualquer hash de transação: o memo decodificado dos dados, a Transfer que de fato aconteceu e se os dois batem com a fatura."]],
+        footer: (r) => `Conferências ao vivo gravadas na Pharos Pacific em ${r}. Nada nesta página assina ou envia transação.`,
+        errNet: "Não consegui falar com o conferente. Tente de novo em um minuto.",
+      },
+    };
+    // the agent's flag messages are English; in PT they are translated by code (values kept as they are)
+    const PT_FLAGS = [
+      [/^No (.+) found in the document\.$/, (m) => `Nenhum(a) ${({ "invoice number or reference": "número de fatura ou referência", "payee address": "endereço de beneficiário", "amount to pay": "valor a pagar", "currency or token": "moeda ou token" })[m[1]] ?? m[1]} encontrado(a) no documento.`],
+      [/^(.+): (.+) — not choosing one\.$/, (m) => `${({ "more than one payee address in the document": "mais de um endereço de beneficiário no documento", "the document states more than one amount due": "o documento traz mais de um valor devido", "the document states more than one total": "o documento traz mais de um total", "the amounts are written in different currencies": "os valores estão em moedas diferentes", "the text of the request and its payment URI disagree": "o texto do pedido e a URI de pagamento discordam" })[m[1]] ?? m[1]}: ${m[2]} — sem escolher um.`],
+      [/^The (\w+) “(.+)” could be (\S+) or (\S+) — the document never shows which decimal separator it uses\.$/, (m) => `O ${({ amount: "valor", total: "total", subtotal: "subtotal", tax: "imposto" })[m[1]] ?? m[1]} “${m[2]}” pode ser ${m[3]} ou ${m[4]} — o documento nunca mostra qual separador decimal usa.`],
+      [/^Payee address (\S+): the checksum does not match \(expected (\S+)\): one or more characters were mistyped\.$/, (m) => `Endereço ${m[1]}: o checksum não confere (esperado ${m[2]}): um ou mais caracteres foram digitados errado.`],
+      [/^The invoice is in US dollars: paid 1:1 in USDC(?: \(USDC\/USD (\S+) on the Chainlink feed\))?\.$/, (m) => `A fatura está em dólares: paga 1:1 em USDC${m[1] ? ` (USDC/USD ${m[1].replace(".", ",")} no feed Chainlink)` : ""}.`],
+      [/^The invoice is in (\w+)\. There is no .+$/, (m) => `A fatura está em ${m[1]}. Não há token ${m[1]} aqui, e converter por uma taxa que a fatura não informa seria chute — peça ao beneficiário um valor em USD/USDC.`],
+      [/^The subtotal is (\S+) but the (total|amount due) is (\S+), and .+$/, (m) => `O subtotal é ${m[1]}, mas o ${m[2] === "total" ? "total" : "valor devido"} é ${m[3]}, e o documento não traz imposto nem outra cobrança que explique a diferença.`],
+      [/^Subtotal (\S+) \+ tax (\S+) = (\S+), but the (total|amount due) is (\S+)\.$/, (m) => `Subtotal ${m[1]} + imposto ${m[2]} = ${m[3]}, mas o ${m[4] === "total" ? "total" : "valor devido"} é ${m[5]}.`],
+      [/^The line items add up to (\S+), but the (subtotal|total|amount due) is (\S+)\.$/, (m) => `Os itens somam ${m[1]}, mas o ${({ subtotal: "subtotal", total: "total", "amount due": "valor devido" })[m[2]]} é ${m[3]}.`],
+      [/^The total is (\S+) but the amount due is (\S+), .+$/, (m) => `O total é ${m[1]}, mas o valor devido é ${m[2]}, e nada no documento explica a diferença.`],
+      [/^The amount in words says (\S+) \((“.+”)\), the digits say (\S+)\.$/, (m) => `O valor por extenso diz ${m[1]} (${m[2]}), os números dizem ${m[3]}.`],
+      [/^The invoice is from “(.+)”, but asks to be paid at (\S+) — the address on file for .+ is (\S+)\. .+$/, (m) => `A fatura é da “${m[1]}”, mas pede pagamento em ${m[2]} — o endereço cadastrado da ${m[1]} é ${m[3]}. Confirme com o fornecedor por um canal em que você já confia antes de pagar.`],
+      [/^Payee matches the vendor book: (.+)\.$/, (m) => `Beneficiário confere com o cadastro: ${m[1]}.`],
+      [/^This payee is not in the vendor book.+$/, () => "Este beneficiário não está no cadastro: primeiro pagamento para um endereço novo — confirme por outro canal."],
+      [/^The invoice does not name a network.+$/, () => "A fatura não diz a rede; isto prepara um pagamento na Pharos Pacific (1672) — confirme que o beneficiário espera receber lá."],
+      [/^The (due date|invoice date) “(.+)” could be (\S+) \(day first\) or (\S+) \(month first\)\.$/, (m) => `A ${m[1] === "due date" ? "data de vencimento" : "data de emissão"} “${m[2]}” pode ser ${m[3]} (dia primeiro) ou ${m[4]} (mês primeiro).`],
+      [/^Overdue: it was due on (\S+)\.$/, (m) => `Vencida: o vencimento era ${m[1]}.`],
+      [/^The paying wallet holds (\S+) (\w+); the invoice is (\S+) \w+\.$/, (m) => `A carteira pagadora tem ${m[1]} ${m[2]}; a fatura é de ${m[3]} ${m[2]}.`],
+      [/^Invoice (\S+) to this payee was already paid by this wallet(?: — transaction (\S+) \(block (\d+)\))?\. .+$/, (m) => `A fatura ${m[1]} para este beneficiário já foi paga por esta carteira${m[2] ? ` — transação ${m[2]} (bloco ${m[3]})` : ""}. O USDC recusaria um segundo pagamento com a mesma impressão digital.`],
+      [/^The invoice asks for payment on chain (\S+) \((.+)\), not Pharos Pacific \(1672\)\.$/, (m) => `A fatura pede pagamento na rede ${m[1]} (${m[2]}), não na Pharos Pacific (1672).`],
+      [/^The payee address is written without a checksum.+$/, () => "O endereço está escrito sem checksum (tudo minúsculo ou maiúsculo), então um erro de digitação não pode ser detectado — compare com o cadastro."],
+    ];
+    const SUM_PT = [
+      [/^Pay (\S+) (\w+) to (.*?)\((\S+)\) for invoice (\S+)(?:, due (\S+))?\. The reference travels on chain as “(.+)”\.$/, (m) => `Pagar ${m[1].replace(/,/g, "§").replace(/\./g, ",").replace(/§/g, ".")} ${m[2]} para ${m[3]}(${m[4]}) pela fatura ${m[5]}${m[6] ? `, vencimento ${m[6]}` : ""}. A referência vai na rede como “${m[7]}”.`],
+      [/^Not prepared: (\d+) problems? to resolve first — (.+)\.$/, (m) => `Não preparado: ${m[1]} problema${m[1] === "1" ? "" : "s"} para resolver antes — ${m[2]}.`],
+    ];
+    const tr = (s, rules) => { if (lang !== "pt" || !s) return s; for (const [re, f] of rules) { const m = re.exec(s); if (m) return f(m); } return s; };
+
+    const EXPLORER = "https://www.pharosscan.xyz";
+    let lang = "en", data = null, fork = null, sel = 0, own = null, hl = new Set();
+    try { const l = localStorage.getItem("ip-lang"); if (l === "pt" || l === "en") lang = l; else if ((navigator.language || "").startsWith("pt")) lang = "pt"; } catch {}
+    const t = () => T[lang];
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+    const loc = () => (lang === "pt" ? "pt-BR" : "en-US");
+    const short = (h) => (h ? `${h.slice(0, 10)}…${h.slice(-6)}` : "");
+    const when = (iso) => new Date(iso).toLocaleString(loc(), { dateStyle: "medium", timeStyle: "short" });
+    const cur = () => (own && sel === -1 ? own : data?.results[sel]);
+
+    function renderInbox() {
+      if (!data) return;
+      const items = data.results.map((r, i) => ({ r, i }));
+      if (own) items.unshift({ r: own, i: -1 });
+      $("inbox").innerHTML = items.map(({ r, i }) => `<button data-i="${i}" class="${i === sel ? "on" : ""}"><span class="t">${esc(r.file ?? r.name)}</span><span class="m"><span class="chip d-${r.decision}">${t().decision[r.decision]}</span>${esc(t().fmt[r.extraction.format] ?? r.extraction.format)}</span></button>`).join("");
+      $("inbox").querySelectorAll("button").forEach((b) => (b.onclick = () => { sel = Number(b.dataset.i); hl = new Set(); renderDesk(); }));
+    }
+    function linesOf(src) { return !src ? [] : src.line ? [src.line] : []; }
+    function renderDoc() {
+      const r = cur();
+      if (!r) return;
+      const ex = r.extraction;
+      const srcLines = new Set(Object.values(ex.fields).flatMap((f) => (Array.isArray(f) ? f.flatMap((x) => linesOf(x.source)) : linesOf(f.source))));
+      const badLines = new Set(r.flags.filter((f) => f.severity === "block").flatMap((f) => [...linesOf(f.source), ...(f.sources ?? []).flatMap(linesOf)]));
+      $("docName").textContent = `${r.file ?? r.name} · ${t().lines(ex.lines.length, ex.pages)}`;
+      const href = r.file ? `invoices/${encodeURIComponent(r.file)}` : null;
+      $("docOpen").hidden = !href; if (href) { $("docOpen").href = href; $("docOpen").textContent = t().open; }
+      $("docBody").innerHTML = ex.lines.map((l, i) => `<div class="ln ${hl.has(i + 1) ? "hl" : badLines.has(i + 1) ? "bad" : srcLines.has(i + 1) ? "src" : ""}" data-l="${i + 1}"><i>${i + 1}</i>${esc(l) || " "}</div>`).join("");
+      const first = [...hl][0];
+      if (first) $("docBody").querySelector(`[data-l="${first}"]`)?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }
+    function highlight(srcs) { hl = new Set(srcs.flatMap(linesOf)); renderDoc(); }
+    function renderSide() {
+      const r = cur();
+      if (!r) return;
+      const ex = r.extraction;
+      const rows = [];
+      for (const k of ["reference", "payee", "payeeName", "amount", "currency", "subtotal", "tax", "total", "paid", "amountInWords", "dueDate", "issueDate", "chainId"]) {
+        const f = ex.fields[k];
+        if (!f) continue;
+        rows.push({ k, label: t().f[k], v: f.value ?? `⚠ ${t().unreadable}`, src: f.source, raw: f.raw });
+      }
+      for (const it of ex.fields.lineItems ?? []) rows.push({ k: "lineItems", label: t().f.lineItems, v: `${it.value ?? "?"} — ${it.description}`, src: it.source });
+      const fieldsHtml = rows.map((x, i) => `<tr class="${x.src?.line ? "clk" : ""}" data-r="${i}"><td>${esc(x.label)}</td><td><span class="v">${esc(x.v)}</span>${x.src ? `<div class="from">${esc(t().from(x.src))}</div>` : ""}</td></tr>`).join("");
+      const flags = r.flags.map((f, i) => `<li class="${f.severity} ${f.source || f.sources ? "clk" : ""}" data-f="${i}"><span class="sev">${t().sev[f.severity]}</span>${esc(tr(f.message, PT_FLAGS))}</li>`).join("");
+      let pay = "";
+      if (r.decision !== "blocked") {
+        const memo = `<div class="memo">${esc(r.resolved.memo)}</div>`;
+        if (r.tx) {
+          const tail = r.resolved.memoHex.slice(2);
+          const d = r.tx.data;
+          const dataHtml = d.endsWith(tail) ? `${esc(d.slice(0, -tail.length))}<mark>${esc(tail)}</mark>` : esc(d);
+          pay = `<p style="margin:0 0 6px;font-size:13px">${t().direct}</p><div class="h3">${t().memo}</div>${memo}<div class="h3">${t().txTitle}</div><div class="code">{ "to": "${r.tx.to}", "value": "${r.tx.value}", "data": "${dataHtml}" }</div>`;
+        } else if (r.sign) {
+          const m = r.sign.typedData.message;
+          pay = `<p style="margin:0 0 6px;font-size:13px">${t().once}</p><div class="h3">${t().memo}</div>${memo}<div class="h3">${t().signTitle}</div><div class="code">${esc(JSON.stringify({ primaryType: "TransferWithAuthorization", message: { from: m.from, to: m.to, value: m.value, validBefore: m.validBefore, nonce: m.nonce } }, null, 2))}</div>`;
+        }
+      }
+      $("side").innerHTML = `<div class="verdict ${r.decision}"><b>${t().decision[r.decision].toUpperCase()}</b><p>${esc(tr(r.summary, SUM_PT))}</p></div>
+        <div><div class="h3">${t().hRead}</div><table class="fields">${fieldsHtml}</table></div>
+        <div><div class="h3">${t().hFlags}</div><ul class="flags">${flags}</ul></div>
+        ${pay ? `<div><div class="h3">${t().hPay}</div>${pay}</div>` : ""}`;
+      $("side").querySelectorAll("tr.clk").forEach((tr_) => (tr_.onclick = () => highlight([rows[Number(tr_.dataset.r)].src])));
+      $("side").querySelectorAll("li.clk").forEach((li) => (li.onclick = () => { const f = r.flags[Number(li.dataset.f)]; highlight([f.source, ...(f.sources ?? [])].filter(Boolean)); }));
+    }
+    function renderDesk() { renderInbox(); renderDoc(); renderSide(); }
+
+    // own invoice
+    $("mBtn").onclick = async () => {
+      const file = $("mFile").files[0];
+      const payer = $("mPayer").value.trim() || undefined;
+      let body;
+      if (file) {
+        if (file.size > 2 * 1024 * 1024) { $("mMsg").className = "err"; $("mMsg").textContent = t().tooBig; return; }
+        const buf = new Uint8Array(await file.arrayBuffer());
+        if (buf[0] === 0x25 && buf[1] === 0x50 && buf[2] === 0x44 && buf[3] === 0x46) { let s = ""; for (let i = 0; i < buf.length; i += 0x8000) s += String.fromCharCode(...buf.subarray(i, i + 0x8000)); body = { pdfBase64: btoa(s), name: file.name, payer }; }
+        else body = { text: new TextDecoder().decode(buf), name: file.name, payer };
+      } else body = { text: $("mText").value, name: "pasted.txt", payer };
+      $("mBtn").disabled = true; $("mMsg").className = "muted"; $("mMsg").textContent = t().running;
+      try {
+        const r = await fetch("/api/check", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+        const j = await r.json().catch(() => ({ ok: false, error: t().errNet }));
+        if (!j.ok) throw new Error(j.error);
+        own = { ...j, name: body.name }; sel = -1; hl = new Set(); $("mMsg").textContent = "";
+        renderDesk(); document.querySelector(".desk").scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (e) { $("mMsg").className = "err"; $("mMsg").textContent = e.message && e.message !== "Failed to fetch" ? e.message : t().errNet; }
+      finally { $("mBtn").disabled = false; }
+    };
+
+    function renderFork() {
+      if (!fork) return;
+      $("forkSub").textContent = t().forkSub(Number(fork.forkBlock).toLocaleString(loc()));
+      const who = { "the payer": lang === "pt" ? "o pagador" : "the payer", "a relayer": lang === "pt" ? "um relayer" : "a relayer", "an unrelated account": lang === "pt" ? "uma conta qualquer" : "an unrelated account" };
+      const sig = { "one EIP-712 authorization": lang === "pt" ? "uma autorização EIP-712" : "one EIP-712 authorization", "the transaction itself": lang === "pt" ? "a própria transação" : "the transaction itself" };
+      $("pays").innerHTML = fork.payments.map((p) => `<div class="pay"><span class="tag">${esc(p.invoice)} · ${esc(t().fmt[p.format] ?? p.format)} · ${esc(p.mode)}</span><b>${esc(p.amount)} → ${short(p.payee)}</b><div class="memo">inv:${esc(p.verify.reference)}</div><div>${p.verify.checks.map((c) => `<span class="${c.ok ? "ok" : "no"}">${c.ok ? "✓" : "✗"}</span> ${esc(c.what)}`).join(" · ")}</div><div class="muted" style="font-size:12px">${esc(t().sentBy(who[p.sentBy] ?? p.sentBy, sig[p.signed] ?? p.signed))} · ${t().gas} ${Number(p.gasUsed).toLocaleString(loc())}</div><div class="hash">fork tx · ${short(p.hash)}</div></div>`).join("");
+      const d = fork.steps.find((s) => s.step === "already paid"), w = fork.steps.find((s) => s.step === "wrong invoice");
+      $("after").innerHTML = `<div><div class="h3">${t().dupTitle}</div><p style="margin:0 0 6px">${t().dup(short(d.foundTx))}</p><p style="margin:0">${t().replay(esc(d.replay.status), esc(d.replay.reason))}</p></div><div><div class="h3">${t().wrongTitle}</div><p style="margin:0">${esc(t().wrong(w.differ.join(", ")))}</p></div>`;
+    }
+
+    function renderStatic() {
+      document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
+      document.querySelectorAll("[data-i]").forEach((el) => (el.textContent = t()[el.dataset.i]));
+      document.querySelectorAll(".lang button").forEach((b) => b.classList.toggle("on", b.dataset.lang === lang));
+      $("how").innerHTML = t().how.map(([a, b]) => `<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join("");
+      if (data) $("deskSub").textContent = t().deskSub(Number(data.results.find((r) => r.chain)?.chain.block ?? 0).toLocaleString(loc()), when(data.recordedAt));
+      $("footer").innerHTML = `${data ? esc(t().footer(when(data.recordedAt))) : ""} · <a href="https://github.com/juhzinho/pharos-invoice-pay" target="_blank" rel="noopener">GitHub</a> · <a href="https://github.com/juhzinho/pharos-invoice-pay#readme" target="_blank" rel="noopener">README</a>`;
+    }
+    function renderAll() { renderStatic(); renderDesk(); renderFork(); }
+    document.querySelectorAll(".lang button").forEach((b) => (b.onclick = () => { lang = b.dataset.lang; try { localStorage.setItem("ip-lang", lang); } catch {} renderAll(); }));
+
+    $("mPayer").value = "0x6ea08ca8f313d860808ef7431fc72c6fbcf4a72d";
+    $("mText").value = "From: Lumen Translations\nInvoice number: LT-5530\nDue date: 2026-12-15\nAmount due: 410.00 USDC\nNetwork: Pharos Pacific (1672)\nPay to: 0x70efd0A826b7a69556F1f2fcFb52A968C7509289\n";
+    try { data = await (await fetch("runs/checks.json")).json(); } catch {}
+    try { fork = await (await fetch("runs/fork-proof.json")).json(); } catch {}
+    renderAll();
+  </script>
+</body>
+</html>
