@@ -50,7 +50,8 @@
     .verdict { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; }
     .verdict.ready { background: var(--ok-soft); } .verdict.review { background: var(--warn-soft); } .verdict.blocked { background: var(--bad-soft); }
     .verdict b { font: 800 13px var(--sans); letter-spacing: .1em; } .verdict.ready b { color: var(--ok); } .verdict.review b { color: var(--warn); } .verdict.blocked b { color: var(--bad); }
-    .verdict p { margin: 0; font-size: 13.5px; }
+    .verdict p { margin: 0; font-size: 13.5px; min-width: 0; overflow-wrap: anywhere; }
+    .flags li, .after p, .pay b { overflow-wrap: anywhere; }
     .fields { width: 100%; border-collapse: collapse; font-size: 12.5px; }
     .fields td { padding: 6px 8px 6px 0; border-top: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; } .fields tr:first-child td { border-top: 0; }
     .fields td:first-child { color: var(--muted); white-space: nowrap; width: 1%; }
@@ -82,10 +83,11 @@
     .how div { font-size: 13px; } .how b { display: block; margin-bottom: 4px; font-size: 13.5px; } .how span { color: var(--muted); }
     footer { color: var(--muted); font-size: 12.5px; max-width: 1240px; margin: 0 auto; padding: 4px 40px 44px; } footer a { color: var(--muted); }
     [hidden] { display: none !important; }
-    @media (max-width: 1100px) { .desk { grid-template-columns: 220px minmax(0, 1fr); } .side { grid-column: 1 / -1; } }
+    @media (max-width: 1100px) { .desk { grid-template-columns: 220px minmax(0, 1fr); } .side { grid-column: 1 / -1; } .side > * { min-width: 0; } }
     @media (max-width: 760px) {
       .top { padding: 12px 16px; } main { padding: 26px 16px 16px; } footer { padding: 4px 16px 32px; } .brand em, .links { display: none; }
-      section.panel { padding: 16px; } .desk, .mine, .pays, .after, .how { grid-template-columns: 1fr; }
+      section.panel { padding: 16px; } .desk, .mine, .pays, .after, .how { grid-template-columns: minmax(0, 1fr); }
+      .side > * { min-width: 0; } .fields { table-layout: fixed; } .fields td:first-child { width: 92px; white-space: normal; }
       .inbox { grid-template-columns: 1fr 1fr; } .doc pre { max-height: 360px; }
     }
   </style>
